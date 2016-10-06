@@ -4,40 +4,41 @@ services:
     build: ./nginx
     container_name: nginx
     environment:
-      - TZ=Asia/Tokyo      
+      - TZ=Asia/Tokyo
     volumes:
       - /var/log/nginx/:/var/log/nginx/
     networks:
-      app_net:
-        ipv4_address: 192.168.0.1
+      - app_net
+    hostname: nginx
     ports:
-      - "80:80"
-      - "443:443"
-    links:
-     - rails
-    command: usr/share/nginx/sbin/nginx -g daemon off
+      - "11180:80"
+      - "11443:443"
+    command: ["usr/share/nginx/sbin/nginx", "-g", "daemon off;"]
   mariadb-storage:
     build: ./storage/mariadb-storage
     container_name: mariadb-storage
     environment:
-      - TZ=Asia/Tokyo    
+      - TZ=Asia/Tokyo
   mariadb:
     build: ./mariadb
     container_name: mariadb
     environment:
-      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
-      - TZ=Asia/Tokyo
+      MYSQL_ROOT_PASSWORD: mypass
+      MYSQL_USER: redmine
+      MYSQL_DATABASE: redmine
+      TZ: Asia/Tokyo
     volumes_from:
       - mariadb-storage
     volumes:
       - /var/lib/mysql
     networks:
-      app_net:
-        ipv4_address: 192.168.0.3   
+      - app_net
+    hostname: mariadb
     ports:
-      - "3306:3306"
+      - "13306:3306"
     expose:
-      - "3306"          
+      - "3306"
+      - "13306"
     depends_on:
       - mariadb-storage
     command: mysqld
@@ -45,20 +46,20 @@ services:
     build: ./rails
     container_name: rails
     environment:
-      - TZ=Asia/Tokyo      
+      - TZ=Asia/Tokyo
     volumes:
       - ./redmine-3.3.0:/usr/src/app/redmine-3.3.0
     networks:
-      app_net:
-        ipv4_address: 192.168.0.2   
+      - app_net
+    hostname: rails
     expose:
       - "3000"
     links:
-     - mariadb      
+      - mariadb
+      - nginx
     depends_on:
       - mariadb
-    command: bundle exec unicorn -c config/unicorn.rb -p 3000 -b '0.0.0.0'
-
+    command: ["bundle", "exec" ,"unicorn", "-c", "config/unicorn.rb", "-p", "3000", "-b", "0.0.0.0"]
 networks:
   app_net:
-    driver: bridge   
+    driver: bridge
