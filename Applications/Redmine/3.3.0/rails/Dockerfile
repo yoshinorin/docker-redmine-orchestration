@@ -6,7 +6,7 @@ MAINTAINER YoshinoriN
 ENV REDMINE_VERSION=3.3.0
 
 RUN apk update --no-cache \
-  && apk add --no-cache --virtual build-dependencies libffi-dev build-base imagemagick-dev=6.9.5.9-r0 mariadb-dev=10.1.17-r0 \
+  && apk add --no-cache --virtual build-dependencies libffi-dev build-base imagemagick-dev=6.9.5.9-r0 mariadb-dev=10.1.17-r0 linux-headers=4.4.6-r1 \
   && apk add --no-cache mysql-client \
   && mkdir -p /usr/src/app/redmine-${REDMINE_VERSION}
 
@@ -15,6 +15,7 @@ COPY ./redmine-${REDMINE_VERSION} /usr/src/app/redmine-${REDMINE_VERSION}
 COPY ./config/* /usr/src/app/redmine-${REDMINE_VERSION}/config/
 
 RUN gem install ffi -v 1.9.14 \
+  && gem install unicorn -v 5.1.0 \
   && bundle install --without development test
 
 ENV RAILS_ENV production
