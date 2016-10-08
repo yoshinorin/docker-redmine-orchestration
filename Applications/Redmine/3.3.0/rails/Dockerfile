@@ -13,16 +13,25 @@ RUN apk update --no-cache \
 WORKDIR /usr/src/app/redmine-${REDMINE_VERSION}
 COPY ./redmine-${REDMINE_VERSION} /usr/src/app/redmine-${REDMINE_VERSION}
 COPY ./config/* /usr/src/app/redmine-${REDMINE_VERSION}/config/
+COPY docker-entrypoint.sh /usr/src/app/redmine-${REDMINE_VERSION}
+COPY Gemfile /usr/src/app/redmine-${REDMINE_VERSION}
 
 RUN gem install ffi -v 1.9.14 --no-rdoc --no-ri \
-  && gem install unicorn -v 5.1.0 --no-rdoc --no-ri \
   && gem install bundler --no-rdoc --no-ri \
   && gem install tzinfo-data --no-rdoc --no-ri \
   && bundle install --jobs=10 --without development test \
-  && bundle exec rake generate_secret_token
+  && bundle exec rake generate_secret_token \
+  && chmod 0700 docker-entrypoint.sh
 
-ENTRYPOINT RAILS_ENV=production bundle exec rake db:migrate /usr/src/app/redmine-3.3.0/Gemfile
+#ENTRYPOINT "/usr/src/app/redmine-"${REDMINE_VERSION}"/docker-entrypoint.sh"
+#ENTRYPOINT RAILS_ENV=production bundle exec rake db:migrate /usr/src/app/redmine-3.3.0/Gemfile
 
 #RUN apk del --purge build-dependencies
 
 EXPOSE 3000
+
+#unicorn
+#CMD SECRET_KEY_BASE=$(rake secret) RAILS_SERVE_STATIC_FILES=true bundle exec unicorn -c /usr/src/app/redmine-3.3.0/config/unicorn.rb -p 3000 -b 0.0.0.0
+
+#WebRick
+#CMD SECRET_KEY_BASE=$(rake secret) RAILS_SERVE_STATIC_FILES=true rails s -eproduction -p 3000 -b 0.0.0.0
