@@ -4,9 +4,9 @@ services:
     build: ./nginx
     container_name: nginx
     environment:
-      - TZ=Asia/Tokyo
+      TZ: Asia/Tokyo
     volumes:
-      - /var/log/nginx/:/var/log/nginx/
+      - ./logs/nginx/:/var/log/nginx/
     networks:
       - app_net
     hostname: nginx
@@ -18,7 +18,7 @@ services:
     build: ./storage/mariadb-storage
     container_name: mariadb-storage
     environment:
-      - TZ=Asia/Tokyo
+      TZ: Asia/Tokyo
   mariadb:
     build: ./mariadb
     container_name: mariadb
@@ -46,12 +46,13 @@ services:
     build: ./rails
     container_name: rails
     environment:
-      - TZ=Asia/Tokyo
-    volumes:
-      - ./redmine-3.3.0:/usr/src/app/redmine-3.3.0
+      RAILS_MIGRATE: 1
+      TZ: Asia/Tokyo
     networks:
       - app_net
     hostname: rails
+    ports:
+      - "13300:3000"   
     expose:
       - "3000"
     links:
@@ -59,7 +60,10 @@ services:
       - nginx
     depends_on:
       - mariadb
-    command: ["bundle", "exec" ,"unicorn", "-c", "config/unicorn.rb", "-p", "3000", "-b", "0.0.0.0"]
+    volumes:
+      - ./logs/rails/:/usr/src/app/redmine/log/
+   #  - . :/usr/src/app/redmine-3.3.0
+    #restart: unless-stopped
 networks:
   app_net:
     driver: bridge
