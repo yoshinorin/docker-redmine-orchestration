@@ -6,6 +6,7 @@
 
 # Direcroty Hierarchy
 
+```sh
 .
 |-- docker-compose.yml
 |-- logs
@@ -41,3 +42,4 @@
     |   `-- Dockerfile
     `-- redmine-files
         `-- Dockerfile
+```
