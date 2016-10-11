@@ -8,7 +8,8 @@ ENV REDMINE_VERSION=3.3.0
 RUN apk update --no-cache \
   && apk add --no-cache --virtual build-dependencies libffi-dev build-base imagemagick-dev=6.9.5.9-r0 mariadb-dev=10.1.17-r0 linux-headers=4.4.6-r1 \
   && apk add --no-cache mysql-client tzdata \
-  && mkdir -p /usr/src/app/redmine-${REDMINE_VERSION}
+  && mkdir -p /usr/src/app/redmine-${REDMINE_VERSION} \
+  && mkdir -p /usr/src/app/redmine-${REDMINE_VERSION}/tmp/pids
 
 WORKDIR /usr/src/app/redmine-${REDMINE_VERSION}
 COPY ./redmine-${REDMINE_VERSION} /usr/src/app/redmine-${REDMINE_VERSION}
@@ -23,15 +24,15 @@ RUN gem install ffi -v 1.9.14 --no-rdoc --no-ri \
   && bundle exec rake generate_secret_token \
   && chmod 0700 docker-entrypoint.sh
 
-#ENTRYPOINT "/usr/src/app/redmine-"${REDMINE_VERSION}"/docker-entrypoint.sh"
-#ENTRYPOINT RAILS_ENV=production bundle exec rake db:migrate /usr/src/app/redmine-3.3.0/Gemfile
+ENTRYPOINT "/usr/src/app/redmine-"${REDMINE_VERSION}"/docker-entrypoint.sh"
 
 #RUN apk del --purge build-dependencies
 
 EXPOSE 3000
 
+#application server will run in the docker-entrypoint.sh
 #unicorn
-#CMD SECRET_KEY_BASE=$(rake secret) RAILS_SERVE_STATIC_FILES=true bundle exec unicorn -c /usr/src/app/redmine-3.3.0/config/unicorn.rb -p 3000 -b 0.0.0.0
+#CMD SECRET_KEY_BASE=$(rake secret) RAILS_SERVE_STATIC_FILES=true bundle exec unicorn_rails -E production -c /usr/src/app/redmine-3.3.0/config/unicorn.rb -p 3000
 
 #WebRick
-#CMD SECRET_KEY_BASE=$(rake secret) RAILS_SERVE_STATIC_FILES=true rails s -eproduction -p 3000 -b 0.0.0.0
+#CMD SECRET_KEY_BASE=$(rake secret) RAILS_SERVE_STATIC_FILES=true rails s -e production -p 3000 -b 0.0.0.0
