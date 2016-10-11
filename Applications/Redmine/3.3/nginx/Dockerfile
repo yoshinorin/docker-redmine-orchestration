@@ -1,4 +1,3 @@
-#https://github.com/YoshinoriN/docker-nginx/tree/master/1.11.4/Alpine
 FROM alpine:3.4
 
 MAINTAINER YoshinoriN

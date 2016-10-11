@@ -3,19 +3,17 @@ FROM ruby:2.3.1-alpine
 
 MAINTAINER YoshinoriN
 
-ENV REDMINE_VERSION=3.3.0
-
 RUN apk update --no-cache \
   && apk add --no-cache --virtual build-dependencies libffi-dev build-base imagemagick-dev=6.9.5.9-r0 mariadb-dev=10.1.17-r0 linux-headers=4.4.6-r1 \
   && apk add --no-cache mysql-client tzdata \
-  && mkdir -p /usr/src/app/redmine-${REDMINE_VERSION} \
-  && mkdir -p /usr/src/app/redmine-${REDMINE_VERSION}/tmp/pids
+  && mkdir -p /usr/src/app/redmine \
+  && mkdir -p /usr/src/app/redmine/tmp/pids
 
-WORKDIR /usr/src/app/redmine-${REDMINE_VERSION}
-COPY ./redmine-${REDMINE_VERSION} /usr/src/app/redmine-${REDMINE_VERSION}
-COPY ./config/* /usr/src/app/redmine-${REDMINE_VERSION}/config/
-COPY docker-entrypoint.sh /usr/src/app/redmine-${REDMINE_VERSION}
-COPY Gemfile /usr/src/app/redmine-${REDMINE_VERSION}
+WORKDIR /usr/src/app/redmine
+COPY ./redmine /usr/src/app/redmine
+COPY ./config/* /usr/src/app/redmine/config/
+COPY docker-entrypoint.sh /usr/src/app/redmine
+COPY Gemfile /usr/src/app/redmine
 
 RUN gem install ffi -v 1.9.14 --no-rdoc --no-ri \
   && gem install bundler --no-rdoc --no-ri \
@@ -24,13 +22,13 @@ RUN gem install ffi -v 1.9.14 --no-rdoc --no-ri \
   && bundle exec rake generate_secret_token \
   && chmod 0700 docker-entrypoint.sh
 
-ENTRYPOINT "/usr/src/app/redmine-"${REDMINE_VERSION}"/docker-entrypoint.sh"
-
 #RUN apk del --purge build-dependencies
+
+ENTRYPOINT "/usr/src/app/redmine/docker-entrypoint.sh"
 
 EXPOSE 3000
 
-#application server will run in the docker-entrypoint.sh
+#application server will start in the docker-entrypoint.sh
 #unicorn
 #CMD SECRET_KEY_BASE=$(rake secret) RAILS_SERVE_STATIC_FILES=true bundle exec unicorn_rails -E production -c /usr/src/app/redmine-3.3.0/config/unicorn.rb -p 3000
 

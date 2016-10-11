@@ -42,15 +42,20 @@ services:
     depends_on:
       - mariadb-storage
     command: mysqld
-  rails:
-    build: ./rails
-    container_name: rails
+  redmine-files:
+    build: ./storage/redmine-files
+    container_name: redmine-files
+    environment:
+      TZ: Asia/Tokyo    
+  redmine:
+    build: ./redmine
+    container_name: redmine
     environment:
       RAILS_MIGRATE: 1
       TZ: Asia/Tokyo
     networks:
       - app_net
-    hostname: rails
+    hostname: redmine
     ports:
       - "13300:3000"   
     expose:
@@ -60,9 +65,17 @@ services:
       - nginx
     depends_on:
       - mariadb
+      - redmine-files
     volumes:
-      - ./logs/rails/:/usr/src/app/redmine/log/
-   #  - . :/usr/src/app/redmine-3.3.0
+      - ./logs/redmine/:/usr/src/app/redmine/log/
+      #- ./redmine/config:/usr/src/app/redmine/config/
+      #- /usr/src/app/redmine/files
+      # please set volumes below, if you need sync.      
+      #- ./redmine/plugins:/usr/src/app/redmine/plugins/
+      #- ./redmine/public:/usr/src/app/redmine/public/      
+      #- ./redmine/app:/usr/src/app/
+    #volumes_from:
+      #- redmine-files
     #restart: unless-stopped
 networks:
   app_net:
