@@ -1,2 +1,3 @@
-#from https://hub.docker.com/_/mariadb/
 FROM mariadb
+
+COPY ./config/* /etc/mysql/
