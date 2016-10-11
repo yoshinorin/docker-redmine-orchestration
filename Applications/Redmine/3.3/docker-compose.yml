@@ -7,12 +7,15 @@ services:
       TZ: Asia/Tokyo
     volumes:
       - ./logs/nginx/:/var/log/nginx/
+      - ./nginx/config/nginx.conf:/etc/nginx/nginx.conf
     networks:
       - app_net
     hostname: nginx
     ports:
       - "11180:80"
       - "11443:443"
+    depends_on:
+      - redmine      
     command: ["usr/share/nginx/sbin/nginx", "-g", "daemon off;"]
   mariadb-storage:
     build: ./storage/mariadb-storage
@@ -62,7 +65,6 @@ services:
       - "3000"
     links:
       - mariadb
-      - nginx
     depends_on:
       - mariadb
       - redmine-files

@@ -9,5 +9,9 @@ else
   echo `date '+%Y/%m/%d %H:%M:%S'` "[INFO] Non migrate."
 fi
 
+if [ -e /usr/src/app/redmine/tmp/pids/unicorn.pid ]; then
+  rm /usr/src/app/redmine/tmp/pids/unicorn.pid
+fi
+
 echo `date '+%Y/%m/%d %H:%M:%S'` "[INFO] Start unicorn."
 SECRET_KEY_BASE=$(rake secret) RAILS_SERVE_STATIC_FILES=true bundle exec unicorn_rails -E production -c /usr/src/app/redmine/config/unicorn.rb -p 3000
