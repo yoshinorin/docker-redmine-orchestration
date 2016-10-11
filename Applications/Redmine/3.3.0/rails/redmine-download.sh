@@ -12,6 +12,7 @@ set -- $line
 if [ $MD5_CHECKSUM = $1 ];then
   tar xvfz redmine-${REDMINE_VERSION}.tar.gz
   mv redmine-${REDMINE_VERSION} redmine
+  rm -rf redmine/redmine-${REDMINE_VERSION}
   rm redmine-${REDMINE_VERSION}.tar.gz
 else
   echo "doesn't match the check sum."
