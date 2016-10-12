@@ -14,8 +14,10 @@ services:
     ports:
       - "11180:80"
       - "11443:443"
+    links:
+      - redmine
     depends_on:
-      - redmine      
+      - redmine
     command: ["usr/share/nginx/sbin/nginx", "-g", "daemon off;"]
   mariadb-storage:
     build: ./storage/mariadb-storage
@@ -72,6 +74,7 @@ services:
       - redmine-files
     volumes:
       - ./logs/redmine/:/usr/src/app/redmine/log/
+      #- ./tmp/sockets/unicorn.sock:/usr/src/app/redmine/sockets/unicorn.sock
       #- ./redmine/config:/usr/src/app/redmine/config/
       #- /usr/src/app/redmine/files
       # please set volumes below, if you need sync.      
