@@ -55,6 +55,8 @@ services:
     container_name: redmine
     environment:
       RAILS_MIGRATE: 1
+      DB_PING_USER: root
+      DB_PING_USER_PASSWORD: mypass
       TZ: Asia/Tokyo
     networks:
       - app_net

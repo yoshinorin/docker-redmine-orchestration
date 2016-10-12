@@ -1,7 +1,7 @@
 #!/bin/sh
 
-REDMINE_VERSION="3.3.0"
-MD5_CHECKSUM="0c0abb2d4efde455c3505d8caf01cb2d"
+REDMINE_VERSION=$1
+MD5_CHECKSUM=$2
 
 curl -O -s http://www.redmine.org/releases/redmine-${REDMINE_VERSION}.tar.gz
 
@@ -17,3 +17,5 @@ if [ $MD5_CHECKSUM = $1 ];then
 else
   echo "doesn't match the check sum."
 fi
+
+echo "Downloaded."
