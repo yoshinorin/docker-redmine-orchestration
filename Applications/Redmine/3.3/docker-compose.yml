@@ -74,16 +74,17 @@ services:
       - redmine-files
     volumes:
       - ./logs/redmine/:/usr/src/app/redmine/log/
-      #- ./tmp/sockets/unicorn.sock:/usr/src/app/redmine/sockets/unicorn.sock
-      #- ./redmine/config:/usr/src/app/redmine/config/
-      #- /usr/src/app/redmine/files
-      # please set volumes below, if you need sync.      
-      #- ./redmine/plugins:/usr/src/app/redmine/plugins/
-      #- ./redmine/public:/usr/src/app/redmine/public/      
-      #- ./redmine/app:/usr/src/app/
-    #volumes_from:
-      #- redmine-files
-    #restart: unless-stopped
+      # for configuration
+      - ./redmine/redmine/config/configuration.yml:/usr/src/app/redmine/config/configuration.yml
+      - ./redmine/redmine/config/database.yml:/usr/src/app/redmine/config/database.yml
+      - ./redmine/redmine/config/settings.yml:/usr/src/app/redmine/config/settings.yml
+      - ./redmine/redmine/config/unicorn.rb:/usr/src/app/redmine/config/unicorn.rb
+      # files
+      - ./redmine/redmine/files:/usr/src/app/redmine/files
+      # TODO : Sync host machine's source code.
+      #- ./redmine/redmine/plugins/:/usr/src/app/redmine/plugins/
+      #- ./redmine/redmine/public/:/usr/src/app/redmine/public/
+      #- ./redmine/redmine/app/:/usr/src/app/redmine/app/
 networks:
   app_net:
     driver: bridge

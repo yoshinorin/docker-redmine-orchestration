@@ -15,7 +15,7 @@ production:
 #  adapter: mysql2
 #  database: redmine_development
 #  host: mariadb
-#  port: 3306  
+#  port: 3306
 #  username: root
 #  password: "mypass"
 #  encoding: utf8
@@ -27,7 +27,7 @@ production:
 #  adapter: mysql2
 #  database: redmine_test
 #  host: mariadb
-#  port: 3306  
+#  port: 3306
 #  username: root
 #  password: "mypass"
 #  encoding: utf8

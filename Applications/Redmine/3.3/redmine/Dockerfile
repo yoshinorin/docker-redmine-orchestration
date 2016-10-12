@@ -11,7 +11,6 @@ RUN apk update --no-cache \
 
 WORKDIR /usr/src/app/redmine
 COPY ./redmine /usr/src/app/redmine
-COPY ./config/* /usr/src/app/redmine/config/
 COPY docker-entrypoint.sh /usr/src/app/redmine
 COPY Gemfile /usr/src/app/redmine
 
