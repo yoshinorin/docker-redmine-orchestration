@@ -43,7 +43,6 @@ services:
       - "13306:3306"
     expose:
       - "3306"
-      - "13306"
     depends_on:
       - mariadb-storage
     command: mysqld
@@ -63,8 +62,6 @@ services:
     networks:
       - app_net
     hostname: redmine
-    ports:
-      - "13300:3000"   
     expose:
       - "3000"
     links:
