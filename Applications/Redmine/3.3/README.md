@@ -4,6 +4,11 @@
 * Nginx
 * Unicorn
 
+# Default install VCS
+
+* git
+
+
 # Direcroty Hierarchy
 
 ```sh
