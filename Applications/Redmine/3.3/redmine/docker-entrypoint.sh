@@ -20,7 +20,8 @@ set -e
 if [ "$RAILS_MIGRATE" = 1 ]; then
   echo `date '+%Y/%m/%d %H:%M:%S'` $0 "[INFO] Start database migrate."
   RAILS_ENV=production bundle exec rake db:migrate /usr/src/app/redmine/Gemfile
-  RAILS_ENV=production bundle exec rake assets:precompile
+  # Should enable below line, if doesn't use web server.
+  #RAILS_ENV=production bundle exec rake assets:precompile
 else
   echo `date '+%Y/%m/%d %H:%M:%S'` $0 "[INFO] Non migrate."
 fi

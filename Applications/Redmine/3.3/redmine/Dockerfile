@@ -19,7 +19,9 @@ RUN gem install ffi -v 1.9.14 --no-rdoc --no-ri \
   && gem install tzinfo-data --no-rdoc --no-ri \
   && bundle install --jobs=10 --without development test \
   && bundle exec rake generate_secret_token \
-  && chmod 0700 docker-entrypoint.sh
+  && chmod 0700 docker-entrypoint.sh \
+  && rm -rf /var/cache/apk/*
+
 
 #RUN apk del --purge build-dependencies
 
