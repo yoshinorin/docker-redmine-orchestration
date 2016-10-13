@@ -36,6 +36,7 @@ services:
       - mariadb-storage
     volumes:
       - /var/lib/mysql
+      - ./mariadb/config/my.cnf:/etc/mysql/my.cnf
     networks:
       - app_net
     hostname: mariadb
@@ -76,8 +77,6 @@ services:
       - ./redmine/redmine/config/database.yml:/usr/src/app/redmine/config/database.yml
       - ./redmine/redmine/config/settings.yml:/usr/src/app/redmine/config/settings.yml
       - ./redmine/redmine/config/unicorn.rb:/usr/src/app/redmine/config/unicorn.rb
-      # files
-      - ./redmine/redmine/files:/usr/src/app/redmine/files
       # TODO : Sync host machine's source code.
       #- ./redmine/redmine/plugins/:/usr/src/app/redmine/plugins/
       #- ./redmine/redmine/public/:/usr/src/app/redmine/public/
