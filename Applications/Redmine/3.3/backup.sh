@@ -12,9 +12,6 @@ if [ ! -d ./${ROOT_DIR_NAME}/${SUB_DIR_NAME} ]; then
 fi
 
 # TODO : Can create safe backup option (Stop all containers befor backup).
-docker export redmine-files > ./${ROOT_DIR_NAME}/${SUB_DIR_NAME}/${FILE_PREFIX}_data_redmine_files.tar.gz
-docker export mariadb-storage > ./${ROOT_DIR_NAME}/${SUB_DIR_NAME}/${FILE_PREFIX}_data_mariadb.tar.gz
-
 docker run --volumes-from mariadb-storage -v $(pwd)/${ROOT_DIR_NAME}/${SUB_DIR_NAME}/:/${ROOT_DIR_NAME}/${SUB_DIR_NAME}/ \
   busybox:uclibc tar cvf /${ROOT_DIR_NAME}/${SUB_DIR_NAME}/${FILE_PREFIX}_data_mariadb.tar /var/lib/mysql
 
