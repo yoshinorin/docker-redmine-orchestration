@@ -70,6 +70,8 @@ services:
     depends_on:
       - mariadb
       - redmine-files
+    volumes_from:
+      - redmine-files      
     volumes:
       - ./logs/redmine/:/usr/src/app/redmine/log/
       # for configuration
