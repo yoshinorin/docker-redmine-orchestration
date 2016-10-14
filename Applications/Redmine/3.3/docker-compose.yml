@@ -18,7 +18,7 @@ services:
       - redmine
     depends_on:
       - redmine
-    command: ["usr/share/nginx/sbin/nginx", "-g", "daemon off;"]
+    command: ["nginx", "-g", "daemon off;"]
   mariadb-storage:
     build: ./storage/mariadb-storage
     container_name: mariadb-storage
