@@ -56,6 +56,13 @@ services:
       TZ: Asia/Tokyo
     volumes:
      - ./storage/redmine-files/files:/usr/src/app/redmine/files
+  git-storage:
+    build: ./storage/git-storage
+    container_name: git-storage
+    environment:
+      TZ: Asia/Tokyo
+    volumes:
+     - ./storage/git-storage/repositories:/usr/src/git
   redmine:
     build: ./redmine
     container_name: redmine
@@ -74,8 +81,10 @@ services:
     depends_on:
       - mariadb
       - redmine-files
+      - git-storage
     volumes_from:
       - redmine-files
+      - git-storage
     volumes:
       - ./logs/redmine/:/usr/src/app/redmine/log/
       # for configuration

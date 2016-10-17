@@ -18,6 +18,8 @@ docker run --volumes-from mariadb-storage -v $(pwd)/${ROOT_DIR_NAME}/${SUB_DIR_N
 docker run --volumes-from redmine-files -v $(pwd)/${ROOT_DIR_NAME}/${SUB_DIR_NAME}/:/${ROOT_DIR_NAME}/${SUB_DIR_NAME}/ \
   dockercomp_redmine-files:latest tar cvf /${ROOT_DIR_NAME}/${SUB_DIR_NAME}/${FILE_PREFIX}_files_redmine.tar /usr/src/app/redmine/files
 
+docker run --volumes-from git-storage -v $(pwd)/${ROOT_DIR_NAME}/${SUB_DIR_NAME}/:/${ROOT_DIR_NAME}/${SUB_DIR_NAME}/ \
+  dockercomp_git-storage:latest tar cvf /${ROOT_DIR_NAME}/${SUB_DIR_NAME}/${FILE_PREFIX}_git_repositories.tar /usr/src/git
 
 
 #if [ -n $1 ]; then
