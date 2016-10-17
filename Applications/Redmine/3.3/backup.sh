@@ -13,10 +13,12 @@ fi
 
 # TODO : Can create safe backup option (Stop all containers befor backup).
 docker run --volumes-from mariadb-storage -v $(pwd)/${ROOT_DIR_NAME}/${SUB_DIR_NAME}/:/${ROOT_DIR_NAME}/${SUB_DIR_NAME}/ \
-  busybox:uclibc tar cvf /${ROOT_DIR_NAME}/${SUB_DIR_NAME}/${FILE_PREFIX}_data_mariadb.tar /var/lib/mysql
+  dockercomp_mariadb-storage:latest tar cvf /${ROOT_DIR_NAME}/${SUB_DIR_NAME}/${FILE_PREFIX}_data_mariadb.tar /var/lib/mysql
 
 docker run --volumes-from redmine-files -v $(pwd)/${ROOT_DIR_NAME}/${SUB_DIR_NAME}/:/${ROOT_DIR_NAME}/${SUB_DIR_NAME}/ \
-  busybox:uclibc tar cvf /${ROOT_DIR_NAME}/${SUB_DIR_NAME}/${FILE_PREFIX}_files_redmine.tar /usr/src/app/redmine/files
+  dockercomp_redmine-files:latest tar cvf /${ROOT_DIR_NAME}/${SUB_DIR_NAME}/${FILE_PREFIX}_files_redmine.tar /usr/src/app/redmine/files
+
+
 
 #if [ -n $1 ]; then
 #  echo "[INFO] Application Container backup."

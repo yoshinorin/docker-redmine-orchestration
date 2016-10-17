@@ -24,6 +24,8 @@ services:
     container_name: mariadb-storage
     environment:
       TZ: Asia/Tokyo
+    volumes:
+     - ./storage/mariadb-storage/data:/var/lib/mysql
   mariadb:
     build: ./mariadb
     container_name: mariadb
@@ -51,7 +53,9 @@ services:
     build: ./storage/redmine-files
     container_name: redmine-files
     environment:
-      TZ: Asia/Tokyo    
+      TZ: Asia/Tokyo
+    volumes:
+     - ./storage/redmine-files/files:/usr/src/app/redmine/files
   redmine:
     build: ./redmine
     container_name: redmine
@@ -71,7 +75,7 @@ services:
       - mariadb
       - redmine-files
     volumes_from:
-      - redmine-files      
+      - redmine-files
     volumes:
       - ./logs/redmine/:/usr/src/app/redmine/log/
       # for configuration
