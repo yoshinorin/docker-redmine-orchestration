@@ -11,7 +11,7 @@ if [ -n "$DB_PING_USER" ]; then
     if echo $result|grep 'alive'; then
       break
     fi
-    sleep 10;
+    sleep 3;
   done
 fi
 
