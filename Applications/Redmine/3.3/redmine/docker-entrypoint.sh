@@ -29,7 +29,10 @@ fi
 # Migrate plugins of Redmine.
 if [ "$PLUGINS_MIGRATE" = 1 ]; then
   echo `date '+%Y/%m/%d %H:%M:%S'` $0 "[INFO] Start plugin migrate."
+  cd plugins
+  bundle install --jobs=10 --without development test
   RAILS_ENV=production bundle exec rake redmine:plugins:migrate
+  cd /usr/src/app/redmine
   echo `date '+%Y/%m/%d %H:%M:%S'` $0 "[INFO] End plugin migrate."
 fi
 
