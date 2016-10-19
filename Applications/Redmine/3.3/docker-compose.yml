@@ -93,8 +93,8 @@ services:
       - ./redmine/redmine/config/settings.yml:/usr/src/app/redmine/config/settings.yml
       - ./redmine/redmine/config/unicorn.rb:/usr/src/app/redmine/config/unicorn.rb
       # TODO : Sync host machine's source code.
+      - ./redmine/redmine/public/themes:/usr/src/app/redmine/public/themes
       #- ./redmine/redmine/plugins/:/usr/src/app/redmine/plugins/
-      #- ./redmine/redmine/public/:/usr/src/app/redmine/public/
       #- ./redmine/redmine/app/:/usr/src/app/redmine/app/
 networks:
   app_net:
