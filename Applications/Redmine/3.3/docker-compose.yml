@@ -68,6 +68,7 @@ services:
     container_name: redmine
     environment:
       RAILS_MIGRATE: 1
+      PLUGINS_MIGRATE: 1
       DB_PING_USER: root
       DB_PING_USER_PASSWORD: mypass
       TZ: Asia/Tokyo
@@ -92,9 +93,9 @@ services:
       - ./redmine/redmine/config/database.yml:/usr/src/app/redmine/config/database.yml
       - ./redmine/redmine/config/settings.yml:/usr/src/app/redmine/config/settings.yml
       - ./redmine/redmine/config/unicorn.rb:/usr/src/app/redmine/config/unicorn.rb
-      # TODO : Sync host machine's source code.
       - ./redmine/redmine/public/themes:/usr/src/app/redmine/public/themes
-      #- ./redmine/redmine/plugins/:/usr/src/app/redmine/plugins/
+      - ./redmine/redmine/plugins/:/usr/src/app/redmine/plugins/
+      # TODO : Sync host machine's source code.
       #- ./redmine/redmine/app/:/usr/src/app/redmine/app/
 networks:
   app_net:

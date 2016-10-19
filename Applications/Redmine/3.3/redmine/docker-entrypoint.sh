@@ -26,6 +26,13 @@ else
   echo `date '+%Y/%m/%d %H:%M:%S'` $0 "[INFO] Non migrate."
 fi
 
+# Migrate plugins of Redmine.
+if [ "$PLUGINS_MIGRATE" = 1 ]; then
+  echo `date '+%Y/%m/%d %H:%M:%S'` $0 "[INFO] Start plugin migrate."
+  RAILS_ENV=production bundle exec rake redmine:plugins:migrate
+  echo `date '+%Y/%m/%d %H:%M:%S'` $0 "[INFO] End plugin migrate."
+fi
+
 # Remove unicorn pid.
 if [ -e /usr/src/app/redmine/tmp/pids/unicorn.pid ]; then
   rm /usr/src/app/redmine/tmp/pids/unicorn.pid
