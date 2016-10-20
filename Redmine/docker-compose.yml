@@ -91,7 +91,6 @@ services:
       # for configuration
       - ./redmine/redmine/config/configuration.yml:/usr/src/app/redmine/config/configuration.yml
       - ./redmine/redmine/config/database.yml:/usr/src/app/redmine/config/database.yml
-      - ./redmine/redmine/config/settings.yml:/usr/src/app/redmine/config/settings.yml
       - ./redmine/redmine/config/unicorn.rb:/usr/src/app/redmine/config/unicorn.rb
       - ./redmine/redmine/public/themes:/usr/src/app/redmine/public/themes
       - ./redmine/redmine/plugins/:/usr/src/app/redmine/plugins/
