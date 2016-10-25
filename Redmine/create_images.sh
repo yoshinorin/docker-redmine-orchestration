@@ -2,6 +2,7 @@
 set -e
 
 DIR_NAME=images
+IMAGE_BASE_NAME=`basename $(pwd) | tr -d "-"`
 
 echo "[INFO] Start create images."
 
@@ -17,16 +18,16 @@ docker save mariadb:10.1 > ${DIR_NAME}/official-mariadb-10.1.tar
 
 # Non-official images
 echo "[INFO] Creating git-storage images."
-docker save dockercomp_git-storage:latest > ${DIR_NAME}/git-storage.tar
+docker save ${IMAGE_BASE_NAME}_git-storage:latest > ${DIR_NAME}/git-storage.tar
 echo "[INFO] Creating redmine-files images."
-docker save dockercomp_redmine-files:latest > ${DIR_NAME}/redmine-files.tar
+docker save ${IMAGE_BASE_NAME}_redmine-files:latest > ${DIR_NAME}/redmine-files.tar
 echo "[INFO] Creating mariadb-storage images."
-docker save dockercomp_mariadb-storage:latest > ${DIR_NAME}/mariadb-storage.tar
+docker save ${IMAGE_BASE_NAME}_mariadb-storage:latest > ${DIR_NAME}/mariadb-storage.tar
 echo "[INFO] Creating redmine images."
-docker save dockercomp_redmine:latest > ${DIR_NAME}/redmine.tar
+docker save ${IMAGE_BASE_NAME}_redmine:latest > ${DIR_NAME}/redmine.tar
 echo "[INFO] Creating mariadb images."
-docker save dockercomp_mariadb:latest > ${DIR_NAME}/mariadb.tar
+docker save ${IMAGE_BASE_NAME}_mariadb:latest > ${DIR_NAME}/mariadb.tar
 echo "[INFO] Creating nginx images."
-docker save dockercomp_nginx:latest > ${DIR_NAME}/nginx.tar
+docker save ${IMAGE_BASE_NAME}_nginx:latest > ${DIR_NAME}/nginx.tar
 
 echo "[INFO] Finish create images."
