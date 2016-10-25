@@ -12,8 +12,8 @@ services:
       - app_net
     hostname: nginx
     ports:
-      - "11180:80"
-      - "11443:443"
+      - "80:80"
+      - "443:443"
     links:
       - redmine
     depends_on:
@@ -42,8 +42,6 @@ services:
     networks:
       - app_net
     hostname: mariadb
-    ports:
-      - "13306:3306"
     expose:
       - "3306"
     depends_on:
