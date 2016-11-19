@@ -1,5 +1,7 @@
 # Redmine 
 
+[日本語はこちら](/doc/README_JA.md)
+
 * MariaDB
 * Nginx
 * Unicorn
@@ -15,50 +17,56 @@
 # Direcroty Hierarchy
 
 ```sh
+
 .
-|-- backups
-|-- backup.sh
-|-- create_images.sh
-|-- docker-compose.yml
-|-- export_images.sh
-|-- images
-|-- import_images.sh
-|-- load_images.sh
-|-- logs
-|   |-- nginx
-|   `-- redmine
-|-- mariadb
-|   |-- config
-|   |   `-- my.cnf
-|   `-- Dockerfile
-|-- nginx
-|   |-- config
-|   |   `-- nginx.conf
-|   `-- Dockerfile
+|-- doc
+|   |-- img
+|   |   `-- overview.png
+|   |-- overview.pptx
+|   `-- README_JA.md
 |-- README.md
-|-- redmine
-|   |-- docker-entrypoint.sh
-|   |-- Dockerfile
-|   |-- Gemfile
-|   |-- README.md
-|   |-- redmine
-|   |   `-- config
-|   |       |-- configuration.yml
-|   |       |-- database.yml
-|   |       |-- settings.yml
-|   |       `-- unicorn.rb
-|   |-- redmine_3.3.0_download.sh
-|   |-- redmine_3.3.1_download.sh
-|   `-- redmine_download_main.sh
-`-- storage
-    |-- git-storage
-    |   |-- Dockerfile
-    |   `-- repositories
-    |       `-- README.md
-    |-- mariadb-storage
-    |   |-- data
+`-- Redmine
+    |-- backups
+    |-- backup.sh
+    |-- create_images.sh
+    |-- docker-compose.yml
+    |-- export_images.sh
+    |-- images
+    |-- import_images.sh
+    |-- load_images.sh
+    |-- logs
+    |   |-- nginx
+    |   `-- redmine
+    |-- mariadb
+    |   |-- config
+    |   |   `-- my.cnf
     |   `-- Dockerfile
-    `-- redmine-files
-        |-- Dockerfile
-        `-- files
+    |-- nginx
+    |   |-- config
+    |   |   `-- nginx.conf
+    |   `-- Dockerfile
+    |-- redmine
+    |   |-- docker-entrypoint.sh
+    |   |-- Dockerfile
+    |   |-- Gemfile
+    |   |-- README.md
+    |   |-- redmine
+    |   |   `-- config
+    |   |       |-- configuration.yml
+    |   |       |-- database.yml
+    |   |       `-- unicorn.rb
+    |   |-- redmine_3.3.0_download.sh
+    |   |-- redmine_3.3.1_download.sh
+    |   `-- redmine_download_main.sh
+    `-- storage
+        |-- git-storage
+        |   |-- Dockerfile
+        |   `-- repositories
+        |       `-- README.md
+        |-- mariadb-storage
+        |   |-- data
+        |   `-- Dockerfile
+        `-- redmine-files
+            |-- Dockerfile
+            `-- files
 ```
