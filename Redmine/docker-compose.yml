@@ -70,7 +70,7 @@ services:
     container_name: redmine
     environment:
       RAILS_MIGRATE: 1
-      PLUGINS_MIGRATE: 1
+      PLUGINS_MIGRATE: 0
       DB_PING_USER: root
       DB_PING_USER_PASSWORD: mypass
       TZ: Asia/Tokyo
