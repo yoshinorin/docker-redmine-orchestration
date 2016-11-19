@@ -1,15 +1,16 @@
-# (WIP):Redmine 3.3.0 powerd by Docker
-
-一応、現時点でも正常に動作しますが、改善したいところが結構あります。
+# Redmine 
 
 * MariaDB
 * Nginx
 * Unicorn
 
+# Overview
+
+![](./doc/img/overview.png)
+
 # Default install VCS
 
 * git
-
 
 # Direcroty Hierarchy
 
