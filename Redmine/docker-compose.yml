@@ -35,6 +35,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: mypass
       MYSQL_USER: redmine
+      MYSQL_PASSWORD: redmine
       MYSQL_DATABASE: redmine
       TZ: Asia/Tokyo
     volumes_from:
