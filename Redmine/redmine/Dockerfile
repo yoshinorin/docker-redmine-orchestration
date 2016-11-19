@@ -18,6 +18,13 @@ COPY Gemfile /usr/src/app/redmine
 RUN gem install ffi -v 1.9.14 --no-rdoc --no-ri \
   && gem install bundler -v 1.13.3 --no-rdoc --no-ri \
   && gem install tzinfo-data -v 1.2016.7 --no-rdoc --no-ri \
+  && gem install mysql2 -v 0.3.21 --no-rdoc --no-ri \
+  && gem install kgio -v 2.10.0 --no-rdoc --no-ri \
+  && gem install redcarpet -v 3.3.4 --no-rdoc --no-ri \
+  && gem install raindrops -v 0.17.0 --no-rdoc --no-ri \
+  && gem install unicorn -v 5.1.0 --no-rdoc --no-ri \
+  && gem install rmagick -v 2.16.0 --no-rdoc --no-ri \
+  && gem install nokogiri -v 1.6.8.1 --no-rdoc --no-ri \
   && bundle install --jobs=10 --without development test \
   && bundle exec rake generate_secret_token \
   && chmod 0700 docker-entrypoint.sh \
