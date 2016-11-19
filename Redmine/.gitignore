@@ -1,2 +1,5 @@
 images/*
 backups/*
+redmine/redmine/*
+logs/*
+storage/*
