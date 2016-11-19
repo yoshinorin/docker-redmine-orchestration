@@ -45,11 +45,11 @@ Redmineはダウンロード用のシェルスクリプトによって動作バ�
 
 root以外でも接続できるように修正する予定です。
 
-## RAILS_MIGRATEフラグについて
+## RAILS_MIGRATEキーについて
 
 `docker-compose.yml`に`RAILS_MIGRATE`というキーが存在します。これは初回ビルド時にデータベースのマイグレートを行うためのものです。初回のビルド後はこちらの値を`0`に変更してください。
 
-別途プラグイン用のマイグレートキー`PLUGINS_MIGRATE`が存在しますが、`RAILS_MIGRATE`と`PLUGINS_MIGRATE`の両方を`1`に設定していると次回以降の起動時にエラーが発生します。（データに影響は出ません）
+別途プラグイン用のマイグレートキー`PLUGINS_MIGRATE`が存在しますが、`RAILS_MIGRATE`と`PLUGINS_MIGRATE`の両方を`1`に設定していると初回ビルド以降の起動時にエラーが発生します。（データに影響は出ません）
 
 これに関しては修正する予定です。
 
@@ -57,17 +57,22 @@ root以外でも接続できるように修正する予定です。
 
 ## MariaDB
 
-MariaDBそのものの設定に関しては`Redmine/mariadb/config/my.cnf`を変更することでコンテナ側に反映されます。ビルド後も変更可能です。
+MariaDBそのものの設定に関しては`Redmine/mariadb/config/my.cnf`を変更することでコンテナ側に反映されます。
+ビルド後も変更可能です。
 
 ただし、ユーザーやパスワードはビルド時に`docker-compose.yml`で作成されます。
 
+MariaDBの文字コードはUTF-8に設定しています。
+
 ## Nginx
 
-`Redmine/nginx/config/nginx.conf`を変更することでコンテナ側に反映されます。ビルド後も変更可能です。
+`Redmine/nginx/config/nginx.conf`を変更することでコンテナ側に反映されます。
+ビルド後も変更可能です。
 
 ## Redmine
 
-`Redmine/redmine/redmine/config`内の各設定ファイルを変更することでコンテナ側に反映されます。ビルド後も変更可能です。
+`Redmine/redmine/redmine/config`内の各設定ファイルを変更することでコンテナ側に反映されます。
+ビルド後も変更可能です。
 
 ## データベースのユーザー
 
@@ -98,7 +103,7 @@ MariaDBそのものの設定に関しては`Redmine/mariadb/config/my.cnf`を変
       DB_PING_USER_PASSWORD: mypass 
 ```
 
-## Redmineのプラグイン
+## Redmineプラグインをインストールする場合
 
 `Redmine/redmine/redmine/plugins`内にpluginを配置してください。
 
@@ -142,6 +147,36 @@ Redmineコンテナ側のリポジトリのパスは下記のディレクトリ�
     ports:
       - "3306:3306"
 ```
+
+## HTTPS
+
+HTTPSを設定する場合は`Redmine/nginx/config/nginx.conf`と`docker-compose.yml`の2ファイルを修正する必要があります。
+証明書はホストOS側に設置し、Nginxコンテナにマウントさせます。
+
+まず、`Redmine/nginx/config/nginx.conf`内の下記コメントアウトを外したうえで、各パラメーターに適切な値と証明書のパスを設定してください。
+
+```sh
+server {
+        #NOTE : for TLS connection.
+        #ssl on;
+        #ssl_prefer_server_ciphers on;
+        #ssl_protocols TLSv1.2;
+        #ssl_ciphers '****************************';
+        #ssl_certificate chainkey.pem path
+        #ssl_certificate_key privatekey.pem path
+```
+
+次に`docker-compose.yml`の次の項目にホスト側の証明書のパスと前述の`nginx.conf`に記述したNginx側の証明書のパスを設定してください。
+
+```yml
+    #NOTE : TLS key's path for HTTPS
+    # - host.chain.key.pem path : nginx.conf's chain.key.pem path
+    # - host.private.key.pem path : nginx.conf's private.key.pem path
+```
+
+後はRedmine側の管理画面でHTTPS通信に変更してください、
+
+以上でHTTPSで通信できるはずです。
 
 ## その他の設定
 
