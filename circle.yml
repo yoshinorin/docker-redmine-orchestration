@@ -1,11 +1,19 @@
+general:
+  build_dir: Redmine
 machine:
   pre:
     - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
     - pip install docker-compose
+    - sudo apt-get install tree
   services:
     - docker
-test:
-  commands:
-    - sh Redmine/redmine/redmine_3.3.1_download.sh 
+dependencies:
+  override:
+    - sudo curl -L "https://github.com/docker/compose/releases/download/1.8.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    - sudo chmod +x /usr/local/bin/docker-compose 
+test: 
   pre:
-    - docker-compose up -d
+    - cd redmine
+    - sudo sh redmine/redmine_download_main.sh 3.3.1 cb8aab3e03cae7d21d003a307e51c176
+    - sudo tree
+    - sudo docker-compose up -d
