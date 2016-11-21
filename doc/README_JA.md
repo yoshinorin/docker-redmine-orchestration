@@ -3,6 +3,12 @@
 Docker-composeで構築できるRedmineです。
 公式のDocker Redmineもありますが、公式のRedmineは1コンテナ内で動作することと構成に納得いかない点があったため自作しました。
 
+# CI
+
+|Build|
+|---|
+|[![CircleCI](https://circleci.com/gh/YoshinoriN/docker-redmine-orchestration.svg?style=svg)](https://circleci.com/gh/YoshinoriN/docker-redmine-orchestration)|
+
 # 構成
 
 * MariaDB 10.1

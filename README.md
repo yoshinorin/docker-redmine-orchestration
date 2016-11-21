@@ -2,6 +2,14 @@
 
 [日本語はこちら](/doc/README_JA.md)
 
+# CI
+
+|Build|
+|---|
+|[![CircleCI](https://circleci.com/gh/YoshinoriN/docker-redmine-orchestration.svg?style=svg)](https://circleci.com/gh/YoshinoriN/docker-redmine-orchestration)|
+
+# Architecture
+
 * MariaDB
 * Nginx
 * Unicorn
