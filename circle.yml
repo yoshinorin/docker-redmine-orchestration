@@ -1,0 +1,11 @@
+machine:
+  pre:
+    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
+    - pip install docker-compose
+  services:
+    - docker
+test:
+  commands:
+    - sh Redmine/redmine/redmine_3.3.1_download.sh 
+  pre:
+    - docker-compose up -d
