@@ -5,6 +5,9 @@ MD5_CHECKSUM=$2
 
 echo "[INFO] Downloading..."
 
+cd $(dirname $0)
+echo pwd
+
 curl -O -s http://www.redmine.org/releases/redmine-${REDMINE_VERSION}.tar.gz
 
 line=`md5sum redmine-${REDMINE_VERSION}.tar.gz`
