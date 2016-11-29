@@ -1,7 +1,4 @@
-images/*
-backups/*
-logs/*
-storage/*
+backups/**/*
 
 # For Redmine assests
 
