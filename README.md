@@ -10,17 +10,49 @@
 
 # Architecture
 
-* MariaDB
-* Nginx
-* Unicorn
+* MariaDB 10.1
+* Nginx 1.11.6
+* Ruby 2.3.1
+* Unicorn 5.1.0
+
+# what is difference between official docker-redmine ?
+
+||Official|This application|
+|---|---|---|
+|DB|MySQL|MariaDB|
+|Web server|webrick or passenger|Nginx|
+|Rails server|webrick or passenger|unicorn|
+
+# Requirements
+
+* Higher than Docker compose 1.6
 
 # Overview
 
 ![](./doc/img/overview.png)
 
-# Default install VCS
+# Default installed VCS
 
-* git
+The git were installed in the Redmine container and the Redmine's `configuration.yml` has been already setted up to link git.
+
+# Install and execute
+
+## Install
+
+* At first. Download Redmine's source code using by `*_download.sh`. You can select which version of Redmine use.
+
+* Second. Please change Redmine's setting.
+    * Redmine's setting files are contain in the `Redmine/redmine/config` directory.
+
+## Docker compose up
+
+Please execute below command on `redmine` directory.
+
+```sh
+docker-compose up
+```
+
+After first build, please change `RAILS_MIGRATE` value to `0` in the `docker-compose.yml`.
 
 # Direcroty Hierarchy
 
@@ -33,7 +65,7 @@
 |   |-- overview.pptx
 |   `-- README_JA.md
 |-- README.md
-`-- Redmine
+`-- redmine
     |-- backups
     |-- backup.sh
     |-- create_images.sh
