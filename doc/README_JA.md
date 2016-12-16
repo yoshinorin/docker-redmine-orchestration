@@ -7,12 +7,12 @@ Docker-composeで構築できるRedmineです。
 
 |Build|
 |---|
-|[![CircleCI](https://circleci.com/gh/YoshinoriN/docker-redmine-orchestration.svg?style=svg)](https://circleci.com/gh/YoshinoriN/docker-redmine-orchestration)|
+|![](https://circleci.com/gh/YoshinoriN/docker-redmine-orchestration/tree/master.svg?style=shield&circle-token=e925c3a7ecef92d882d354a82464d4b7e309c004)|
 
 # 構成
 
 * MariaDB 10.1
-* Nginx 1.11.5
+* Nginx 1.11.6
 * Ruby 2.3.1
 * Unicorn 5.1.0
 
