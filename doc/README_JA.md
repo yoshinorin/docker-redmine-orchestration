@@ -43,21 +43,21 @@ Redmineはダウンロード用のシェルスクリプトによって動作バ�
 
 # インストールと実行
 
+## インストール
+
 `Redmine/redmine`ディレクトリ内にある`*_download.sh`を実行してください。バージョンに応じたRedmineのソースコードのダウンロードがはじまります。
 
 ダウンロード完了後は`Redmine/redmine/config`内の各種設定ファイルを任意の設定に変更してください。
 
-**ただし、現状データベースはrootでしか接続できないのでデータベースのユーザーはそのままにしてください。パスワードは変更可能です。**
+## 実行
 
-root以外でも接続できるように修正する予定です。
+`redmine`ディレクトリ内で下記のコマンドを実行してください。
 
-## RAILS_MIGRATEキーについて
+```sh
+docker-compose up
+```
 
 `docker-compose.yml`に`RAILS_MIGRATE`というキーが存在します。これは初回ビルド時にデータベースのマイグレートを行うためのものです。初回のビルド後はこちらの値を`0`に変更してください。
-
-別途プラグイン用のマイグレートキー`PLUGINS_MIGRATE`が存在しますが、`RAILS_MIGRATE`と`PLUGINS_MIGRATE`の両方を`1`に設定していると初回ビルド以降の起動時にエラーが発生します。（データに影響は出ません）
-
-これに関しては修正する予定です。
 
 # 設定
 
@@ -68,21 +68,13 @@ MariaDBそのものの設定に関しては`Redmine/mariadb/config/my.cnf`を変
 
 ただし、ユーザーやパスワードはビルド時に`docker-compose.yml`で作成されます。
 
+### 文字コード
+
 MariaDBの文字コードはUTF-8に設定しています。
 
-## Nginx
+### ユーザーとパスワード
 
-`Redmine/nginx/config/nginx.conf`を変更することでコンテナ側に反映されます。
-ビルド後も変更可能です。
-
-## Redmine
-
-`Redmine/redmine/redmine/config`内の各設定ファイルを変更することでコンテナ側に反映されます。
-ビルド後も変更可能です。
-
-## データベースのユーザー
-
-`docker-compose.yml`の下記を変更することでRedmineデータベースとrootパスワードを変更することが可能です。
+`docker-compose.yml`の下記を変更することでユーザーとパスワードを変更することが可能です。
 
 ```yml
   mariadb:
@@ -94,7 +86,7 @@ MariaDBの文字コードはUTF-8に設定しています。
       MYSQL_DATABASE: redmine
 ```
 
-変更した場合はあわせて`Redmine/redmine/config/database.yml`も変更してください。
+変更した場合はあわせて`Redmine/redmine/config/database.yml`も変更してください。初回のビルド後は`MYSQL_ROOT_PASSWORD`は削除可能です。
 
 加えて下記も変更してください。下記はDocker composeで起動した際にMariaDBが先に起動するのを確認するためにpingを打っています。
 
@@ -105,11 +97,60 @@ MariaDBの文字コードはUTF-8に設定しています。
     environment:
       RAILS_MIGRATE: 1
       PLUGINS_MIGRATE: 1
-      DB_PING_USER: root
-      DB_PING_USER_PASSWORD: mypass 
+      DB_PING_USER: redmine
+      DB_PING_USER_PASSWORD: redmine 
 ```
 
-## Redmineプラグインをインストールする場合
+### MariaDBに直接接続したい場合
+
+デフォルトの設定ではMariaDBには直接接続できません。
+接続する場合は`docker-compose.yml`の`mariadb`キー内に下記を追記してください。
+
+```yml
+    ports:
+      - "3306:3306"
+```
+
+## Nginx
+
+`Redmine/nginx/config/nginx.conf`を変更することでコンテナ側に反映されます。
+ビルド後も変更可能です。
+
+### HTTPS
+
+HTTPSを設定する場合は`Redmine/nginx/config/nginx.conf`と`docker-compose.yml`の2ファイルを修正する必要があります。
+証明書はホストOS側に設置し、Nginxコンテナにマウントさせます。
+
+まず、`Redmine/nginx/config/nginx.conf`内の下記コメントアウトを外したうえで、各パラメーターに適切な値と証明書のパスを設定してください。
+
+```sh
+server {
+        #NOTE : for TLS connection.
+        ssl on;
+        ssl_prefer_server_ciphers on;
+        ssl_protocols TLSv1.2;
+        ssl_certificate <key's path in nginx container>;
+        ssl_certificate_key <key's path in nginx container>;
+```
+
+次に`docker-compose.yml`の次の項目にホスト側の証明書のパスと前述の`nginx.conf`に記述したNginx側の証明書のパスを設定してください。
+
+```yml
+    #NOTE : TLS key's path for HTTPS
+     - <host ssl_certificate key's path> : <nginx.conf ssl_certificate key's path>
+     - <host ssl_certificate_key key's path> : <nginx.conf  ssl_certificate_key key's path>
+```
+
+後はRedmine側の管理画面でHTTPS通信に変更してください、
+
+以上でHTTPSで通信できるはずです。
+
+## Redmine
+
+`Redmine/redmine/redmine/config`内の各設定ファイルを変更することでコンテナ側に反映されます。
+ビルド後も変更可能です。
+
+### Redmineプラグインをインストールする場合
 
 `Redmine/redmine/redmine/plugins`内にpluginを配置してください。
 
@@ -128,7 +169,27 @@ MariaDBの文字コードはUTF-8に設定しています。
 
 前述の通り`RAILS_MIGRATE`キーと`RAILS_MIGRATE`キーが存在します。両方を`1`に設定していると次回以降の起動時にエラーが発生します。初回のビルド後は`RAILS_MIGRATE`キーを`0`に切り替えてください。
 
-## git
+なお、ユーザーが使用するプラグインを柔軟にインストールできるように、コンテナ起動時に都度インストールするようにしています。これにより、インストールのたびにイメージを再作成する手間を省いています。
+
+# タイムゾーン
+
+コンテナのタイムゾーンを変更したい場合は下記のように`TZ`キーを追加してください。下記のサンプルだと東京にしています。
+
+```yml
+  mariadb-storage:
+    build: ./storage/mariadb-storage
+    container_name: mariadb-storage
+    environment:
+      TZ: Asia/Tokyo
+    volumes:
+     - ./storage/mariadb-storage/data:/var/lib/mysql
+```
+
+# その他の設定
+
+その他設定変更したい場合は`docker-compose.yml`を変更してください。
+
+# git
 
 下記のディレクトリにリポジトリを作成した場合にリポジトリをRedmine側のコンテナにマウントするように設定しています。
 
@@ -144,49 +205,6 @@ Redmineコンテナ側のリポジトリのパスは下記のディレクトリ�
 /usr/src/git/<your-repository>
 ```
 
-## MariaDBに直接接続したい場合
-
-デフォルトの設定ではMariaDBには直接接続できません。
-接続する場合は`docker-compose.yml`の`mariadb`キー内に下記を追記してください。
-
-```yml
-    ports:
-      - "3306:3306"
-```
-
-## HTTPS
-
-HTTPSを設定する場合は`Redmine/nginx/config/nginx.conf`と`docker-compose.yml`の2ファイルを修正する必要があります。
-証明書はホストOS側に設置し、Nginxコンテナにマウントさせます。
-
-まず、`Redmine/nginx/config/nginx.conf`内の下記コメントアウトを外したうえで、各パラメーターに適切な値と証明書のパスを設定してください。
-
-```sh
-server {
-        #NOTE : for TLS connection.
-        #ssl on;
-        #ssl_prefer_server_ciphers on;
-        #ssl_protocols TLSv1.2;
-        #ssl_ciphers '****************************';
-        #ssl_certificate chainkey.pem path
-        #ssl_certificate_key privatekey.pem path
-```
-
-次に`docker-compose.yml`の次の項目にホスト側の証明書のパスと前述の`nginx.conf`に記述したNginx側の証明書のパスを設定してください。
-
-```yml
-    #NOTE : TLS key's path for HTTPS
-    # - host.chain.key.pem path : nginx.conf's chain.key.pem path
-    # - host.private.key.pem path : nginx.conf's private.key.pem path
-```
-
-後はRedmine側の管理画面でHTTPS通信に変更してください、
-
-以上でHTTPSで通信できるはずです。
-
-## その他の設定
-
-その他設定変更したい場合は`docker-compose.yml`を変更してください。
 
 # バックアップ
 
