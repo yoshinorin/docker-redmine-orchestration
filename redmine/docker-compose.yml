@@ -3,14 +3,14 @@ services:
   nginx:
     build: ./nginx
     container_name: nginx
-    environment:
-      TZ: Asia/Tokyo
+    #environment:
+    #  TZ: Asia/Tokyo # Please set time zone if you want to change it.
     volumes:
       - ./logs/nginx/:/var/log/nginx/
       - ./nginx/config/nginx.conf:/etc/nginx/nginx.conf
     #NOTE : TLS key's path for HTTPS
-    # - host.chain.key.pem path : nginx.conf's chain.key.pem path
-    # - host.private.key.pem path : nginx.conf's private.key.pem path
+    # - <host ssl_certificate key's path> : <nginx.conf ssl_certificate key's path>
+    # - <host ssl_certificate_key key's path> : <nginx.conf  ssl_certificate_key key's path>
     networks:
       - app_net
     hostname: nginx
@@ -25,8 +25,8 @@ services:
   mariadb-storage:
     build: ./storage/mariadb-storage
     container_name: mariadb-storage
-    environment:
-      TZ: Asia/Tokyo
+    #environment:
+    #  TZ: Asia/Tokyo # Please set time zone if you want to change it.
     volumes:
      - ./storage/mariadb-storage/data:/var/lib/mysql
   mariadb:
@@ -37,7 +37,7 @@ services:
       MYSQL_USER: redmine
       MYSQL_PASSWORD: redmine
       MYSQL_DATABASE: redmine
-      TZ: Asia/Tokyo
+      #TZ: Asia/Tokyo # Please set time zone if you want to change it.
     volumes_from:
       - mariadb-storage
     volumes:
@@ -54,15 +54,15 @@ services:
   redmine-files:
     build: ./storage/redmine-files
     container_name: redmine-files
-    environment:
-      TZ: Asia/Tokyo
+    #environment:
+    #  TZ: Asia/Tokyo # Please set time zone if you want to change it.
     volumes:
      - ./storage/redmine-files/files:/usr/src/app/redmine/files
   git-storage:
     build: ./storage/git-storage
     container_name: git-storage
-    environment:
-      TZ: Asia/Tokyo
+    #environment:
+    #  TZ: Asia/Tokyo # Please set time zone if you want to change it.
     volumes:
      - ./storage/git-storage/repositories:/usr/src/git
   redmine:
@@ -71,9 +71,9 @@ services:
     environment:
       RAILS_MIGRATE: 1
       PLUGINS_MIGRATE: 0
-      DB_PING_USER: root
-      DB_PING_USER_PASSWORD: mypass
-      TZ: Asia/Tokyo
+      DB_PING_USER: redmine
+      DB_PING_USER_PASSWORD: redmine
+      #TZ: Asia/Tokyo # Please set time zone if you want to change it.
     networks:
       - app_net
     hostname: redmine
