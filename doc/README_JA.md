@@ -1,3 +1,7 @@
+# 補足記事
+
+このリポジトリの補足記事は[こちらです](https://yoshinorin.net/2017/01/04/redmine-based-on-nginx-unicorn-mariadb-using-by-docker-compose/)
+
 # これは何？
 
 Docker-composeで構築できるRedmineです。
