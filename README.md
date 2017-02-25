@@ -11,7 +11,7 @@
 # Architecture
 
 * MariaDB 10.1
-* Nginx 1.11.6
+* Nginx 1.11.9
 * Ruby 2.3.1
 * Unicorn 5.1.0
 
