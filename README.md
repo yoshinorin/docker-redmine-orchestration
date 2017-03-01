@@ -6,7 +6,7 @@
 
 |Build|
 |---|
-|![](https://circleci.com/gh/YoshinoriN/docker-redmine-orchestration/tree/master.svg?style=shield&circle-token=e925c3a7ecef92d882d354a82464d4b7e309c004)|
+|[![CircleCI](https://circleci.com/gh/YoshinoriN/docker-redmine-orchestration.svg?style=svg)](https://circleci.com/gh/YoshinoriN/docker-redmine-orchestration)|
 
 # Architecture
 
