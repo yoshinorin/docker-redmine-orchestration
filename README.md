@@ -17,7 +17,7 @@
 
 # what is difference between official docker-redmine ?
 
-||Official|This application|
+|-|Official|This application|
 |---|---|---|
 |DB|MySQL|MariaDB|
 |Web server|webrick or passenger|Nginx|
