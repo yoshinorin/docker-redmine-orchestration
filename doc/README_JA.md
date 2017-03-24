@@ -24,7 +24,7 @@ Redmineはダウンロード用のシェルスクリプトによって動作バ�
 
 # Docker公式のRedmineとの相違点
 
-||公式|本リポジトリ|
+|-|公式|本リポジトリ|
 |---|---|---|
 |DB|MySQL|MariaDB|
 |Webサーバー|webrickもしくはpassenger|Nginx|
