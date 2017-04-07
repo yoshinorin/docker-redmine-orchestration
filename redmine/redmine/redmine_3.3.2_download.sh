@@ -1,7 +1,7 @@
 #!/bin/sh
 
-REDMINE_VERSION="3.3.0"
-MD5_CHECKSUM="0c0abb2d4efde455c3505d8caf01cb2d"
+REDMINE_VERSION="3.3.2"
+MD5_CHECKSUM="8e403981dc3a19a42ee978f055be62ca"
 
 cd $(dirname $0)
 echo pwd
