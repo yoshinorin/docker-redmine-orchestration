@@ -33,10 +33,3 @@ RUN gem install ffi -v 1.9.14 --no-rdoc --no-ri \
 ENTRYPOINT "/usr/src/app/redmine/docker-entrypoint.sh"
 
 EXPOSE 3000
-
-#application server will start in the docker-entrypoint.sh
-#unicorn
-#CMD SECRET_KEY_BASE=$(rake secret) RAILS_SERVE_STATIC_FILES=true bundle exec unicorn_rails -E production -c /usr/src/app/redmine-3.3.0/config/unicorn.rb -p 3000
-
-#WebRick
-#CMD SECRET_KEY_BASE=$(rake secret) RAILS_SERVE_STATIC_FILES=true rails s -e production -p 3000 -b 0.0.0.0
