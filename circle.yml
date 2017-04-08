@@ -11,5 +11,5 @@ dependencies:
     - sudo chmod +x /usr/local/bin/docker-compose
 test: 
   pre:
-    - sudo sh redmine/redmine_3.3.1_download.sh
+    - sudo sh redmine/redmine_3.3.2_download.sh
     - sudo docker-compose up -d
