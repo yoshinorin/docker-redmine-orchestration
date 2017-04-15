@@ -15,7 +15,7 @@ services:
       - app_net
     hostname: nginx
     ports:
-      - "80:80"
+      - "3000:3000"
       - "443:443"
     links:
       - redmine

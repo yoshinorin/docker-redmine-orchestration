@@ -52,6 +52,8 @@ Please execute below command on `redmine` directory.
 docker-compose up
 ```
 
+Please access `http://yourdomain:3000`.
+
 After first build, please change `RAILS_MIGRATE` value to `0` in the `docker-compose.yml`.
 
 # Settings
