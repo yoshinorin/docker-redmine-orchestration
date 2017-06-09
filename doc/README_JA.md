@@ -16,9 +16,9 @@ Docker-composeで構築できるRedmineです。
 # 構成
 
 * MariaDB 10.1
-* Nginx 1.11.9
+* Nginx latest
 * Ruby 2.3.1
-* Unicorn 5.1.0
+* Unicorn 5.3.0
 
 Redmineはダウンロード用のシェルスクリプトによって動作バージョンを変更できるようにしています。
 
