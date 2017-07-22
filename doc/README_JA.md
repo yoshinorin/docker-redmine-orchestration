@@ -1,4 +1,4 @@
-[![Latest](https://img.shields.io/github/release/YoshinoriN/docker-redmine-orchestration.svg?style=flat-square)](https://github.com//YoshinoriN/docker-redmine-orchestration/releases/latest)
+![](https://img.shields.io/badge/Redmine-v3.3.2-blue.svg)
 
 # 補足記事
 
