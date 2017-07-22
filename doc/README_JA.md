@@ -51,13 +51,13 @@ Redmineはダウンロード用のシェルスクリプトによって動作バ�
 
 ## インストール
 
-`Redmine/redmine`ディレクトリ内にある`*_download.sh`を実行してください。バージョンに応じたRedmineのソースコードのダウンロードがはじまります。
+`./src`ディレクトリ内にある`redmine_download.sh`を実行してください。
 
-ダウンロード完了後は`Redmine/redmine/config`内の各種設定ファイルを任意の設定に変更してください。
+ダウンロード完了後は`./src/config`内の各種設定ファイルを任意の設定に変更してください。
 
 ## 実行
 
-`redmine`ディレクトリ内で下記のコマンドを実行してください。
+`docker-compose up`を実行してください。
 
 ```sh
 docker-compose up
@@ -121,15 +121,15 @@ MariaDBの文字コードはUTF-8に設定しています。
 
 ## Nginx
 
-`Redmine/nginx/config/nginx.conf`を変更することでコンテナ側に反映されます。
+`./nginx/config/nginx.conf`を変更することでコンテナ側に反映されます。
 ビルド後も変更可能です。
 
 ### HTTPS
 
-HTTPSを設定する場合は`Redmine/nginx/config/nginx.conf`と`docker-compose.yml`の2ファイルを修正する必要があります。
+HTTPSを設定する場合は`./nginx/config/nginx.conf`と`docker-compose.yml`の2ファイルを修正する必要があります。
 証明書はホストOS側に設置し、Nginxコンテナにマウントさせます。
 
-まず、`Redmine/nginx/config/nginx.conf`内の下記コメントアウトを外したうえで、各パラメーターに適切な値と証明書のパスを設定してください。
+まず、`./nginx/config/nginx.conf`内の下記コメントアウトを外したうえで、各パラメーターに適切な値と証明書のパスを設定してください。
 
 ```sh
 server {
@@ -155,7 +155,7 @@ server {
 
 ## Redmine
 
-`Redmine/redmine/redmine/config`内の各設定ファイルを変更することでコンテナ側に反映されます。
+`./redmine/src/config`内の各設定ファイルを変更することでコンテナ側に反映されます。
 ビルド後も変更可能です。
 
 ### Redmineプラグインをインストールする場合
@@ -202,7 +202,7 @@ server {
 リポジトリは複数作成可能です。
 
 ```sh
-Redmine/storage/git-storage/repositories/<your-repository>
+./storage/git-storage/repositories/<your-repository>
 ```
 
 Redmineコンテナ側のリポジトリのパスは下記のディレクトリ内になります。
