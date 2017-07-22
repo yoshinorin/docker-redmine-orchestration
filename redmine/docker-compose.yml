@@ -70,7 +70,7 @@ services:
     container_name: redmine
     environment:
       RAILS_MIGRATE: 1
-      PLUGINS_MIGRATE: 0
+      PLUGINS_MIGRATE: 1
       DB_PING_USER: redmine
       DB_PING_USER_PASSWORD: redmine
       #TZ: Asia/Tokyo # Please set time zone if you want to change it.

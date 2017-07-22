@@ -160,13 +160,11 @@ And please set `PLUGINS_MIGRATE` key's value to `1`.
     build: ./redmine
     container_name: redmine
     environment:
-      RAILS_MIGRATE: 0
+      RAILS_MIGRATE: 1
       PLUGINS_MIGRATE: 1
 ```
 
 After that these plugins were installed 
-
-**`RAILS_MIGRATE` key and `PLUGINS_MIGRATE` key can not set `1` at the same time.** So you have to change `RAILS_MIGRATE` key's value to `0` after first build.
 
 Are plugins installed every docker compose up. This behavior for flexible install. (User can select what plugin do you use and uninstall every time easily.)
 
