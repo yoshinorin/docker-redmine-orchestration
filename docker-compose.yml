@@ -91,11 +91,11 @@ services:
     volumes:
       - ./logs/redmine/:/usr/src/app/redmine/log/
       # for configuration
-      - ./redmine/redmine/config/configuration.yml:/usr/src/app/redmine/config/configuration.yml
-      - ./redmine/redmine/config/database.yml:/usr/src/app/redmine/config/database.yml
-      - ./redmine/redmine/config/unicorn.rb:/usr/src/app/redmine/config/unicorn.rb
-      - ./redmine/redmine/public/themes:/usr/src/app/redmine/public/themes
-      - ./redmine/redmine/plugins/:/usr/src/app/redmine/plugins/
+      - ./redmine/src/config/configuration.yml:/usr/src/app/redmine/config/configuration.yml
+      - ./redmine/src/config/database.yml:/usr/src/app/redmine/config/database.yml
+      - ./redmine/src/config/unicorn.rb:/usr/src/app/redmine/config/unicorn.rb
+      - ./redmine/src/public/themes:/usr/src/app/redmine/public/themes
+      - ./redmine/src/plugins/:/usr/src/app/redmine/plugins/
       # TODO : Sync host machine's source code.
       #- ./redmine/redmine/app/:/usr/src/app/redmine/app/
 networks:

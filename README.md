@@ -41,14 +41,14 @@ The git were installed in the Redmine container and the Redmine's `configuration
 
 ## Install
 
-* At first. Download Redmine's source code using by `*_download.sh`. You can select which version of Redmine use.
+* At first. Download Redmine's source code using by `redmine_download.sh`.
 
 * Second. Please change Redmine's setting.
-    * Redmine's setting files are contain in the `Redmine/redmine/config` directory.
+    * Redmine's setting files are contain in the `./src/config` directory.
 
 ## Docker compose up
 
-Please execute below command on `redmine` directory.
+Please execute `docker-compose up` in root directory.
 
 ```sh
 docker-compose up
@@ -116,14 +116,14 @@ You can connect MariaDB directory using by `3306` port. Also you can change port
 
 ## Nginx
 
-Please change `redmine/nginx/config/nginx.conf`.
+Please change `./nginx/config/nginx.conf`.
 Also you can change it after build image.
 
 ### HTTPS
 
-You have to change `redmine/nginx/config/nginx.conf` and `docker-compose.yml`.
+You have to change `./nginx/config/nginx.conf` and `docker-compose.yml`.
 
-At first please configure `redmine/nginx/config/nginx.conf`.
+At first please configure `./nginx/config/nginx.conf`.
 And change server settings. Below is example.
 
 ```yml
@@ -148,7 +148,7 @@ Please change Redmine connection settings to HTTPS using by Redmine's management
 
 ## Redmine
 
-Please change `redmine/redmine/redmine/config`.
+Please change `./redmine/src/config`.
 Also you can change it after build image.
 
 ### Install plugins
@@ -197,7 +197,7 @@ If you integrate git repositories with Redmine. Please create repositories below
 You can create some repositories in the directory.
 
 ```sh
-redmine/storage/git-storage/repositories/<your-repository>
+./storage/git-storage/repositories/<your-repository>
 ```
 
 And above directory are mount below directory in Redmine container.
@@ -215,54 +215,55 @@ Please execute `backup.sh`. Back up files are create in `buckups` directory by `
 ```sh
 
 .
-|-- doc
-|   |-- img
-|   |   `-- overview.png
-|   |-- overview.pptx
-|   `-- README_JA.md
-|-- README.md
-`-- redmine
-    |-- backups
-    |-- backup.sh
-    |-- create_images.sh
-    |-- docker-compose.yml
-    |-- export_images.sh
-    |-- images
-    |-- import_images.sh
-    |-- load_images.sh
-    |-- logs
-    |   |-- nginx
-    |   `-- redmine
-    |-- mariadb
-    |   |-- config
-    |   |   `-- my.cnf
-    |   `-- Dockerfile
-    |-- nginx
-    |   |-- config
-    |   |   `-- nginx.conf
-    |   `-- Dockerfile
-    |-- redmine
-    |   |-- docker-entrypoint.sh
-    |   |-- Dockerfile
-    |   |-- Gemfile
-    |   |-- README.md
-    |   |-- redmine
-    |   |   `-- config
-    |   |       |-- configuration.yml
-    |   |       |-- database.yml
-    |   |       `-- unicorn.rb
-    |   |-- redmine_3.3.0_download.sh
-    |   |-- redmine_3.3.1_download.sh
-    |   `-- redmine_download_main.sh
-    `-- storage
-        |-- git-storage
-        |   |-- Dockerfile
-        |   `-- repositories
-        |       `-- README.md
-        |-- mariadb-storage
-        |   |-- data
-        |   `-- Dockerfile
-        `-- redmine-files
-            |-- Dockerfile
-            `-- files
+
+.
+├── backups
+├── backup.sh
+├── circle.yml
+├── create_images.sh
+├── doc
+│   ├── img
+│   │   └── overview.png
+│   ├── overview.pptx
+│   └── README_JA.md
+├── docker-compose.yml
+├── export_images.sh
+├── images
+├── import_images.sh
+├── LICENSE
+├── load_images.sh
+├── logs
+│   ├── nginx
+│   └── redmine
+├── mariadb
+│   ├── config
+│   │   └── my.cnf
+│   └── Dockerfile
+├── nginx
+│   ├── config
+│   │   └── nginx.conf
+│   └── Dockerfile
+├── README.md
+├── redmine
+│   ├── docker-entrypoint.sh
+│   ├── Dockerfile
+│   ├── Gemfile
+│   ├── README.md
+│   ├── redmine_download.sh
+│   └── src
+│       └── config
+│           ├── configuration.yml
+│           ├── database.yml
+│           └── unicorn.rb
+└── storage
+    ├── git-storage
+    │   ├── Dockerfile
+    │   └── repositories
+    │       └── README.md
+    ├── mariadb-storage
+    │   ├── data
+    │   └── Dockerfile
+    └── redmine-files
+        ├── Dockerfile
+        └── files
 ```
