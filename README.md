@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Redmine-v3.3.2-blue.svg)
+![](https://img.shields.io/badge/Redmine-v3.4.1-blue.svg)
 
 # Redmine 
 
