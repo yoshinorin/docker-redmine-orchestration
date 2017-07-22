@@ -10,7 +10,7 @@ RUN apk update --no-cache \
   && mkdir -p /usr/src/app/redmine/tmp/pids
 
 WORKDIR /usr/src/app/redmine
-COPY ./redmine /usr/src/app/redmine
+COPY ./src /usr/src/app/redmine
 COPY docker-entrypoint.sh /usr/src/app/redmine
 COPY Gemfile /usr/src/app/redmine
 

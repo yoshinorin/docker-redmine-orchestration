@@ -1,7 +1,7 @@
 #!/bin/sh
 
-REDMINE_VERSION=$1
-MD5_CHECKSUM=$2
+REDMINE_VERSION="3.4.1"
+MD5_CHECKSUM="79b07289c0b591e81180d017dbf6ebf4"
 
 echo "[INFO] Downloading..."
 
@@ -16,7 +16,7 @@ set -- $line
 
 if [ $MD5_CHECKSUM = $1 ];then
   tar xvfz redmine-${REDMINE_VERSION}.tar.gz
-  cp -Rf redmine-${REDMINE_VERSION}/. redmine
+  cp -Rf redmine-${REDMINE_VERSION}/. src
   rm -rf redmine-${REDMINE_VERSION}
   rm -rf redmine/redmine-${REDMINE_VERSION}
   rm redmine-${REDMINE_VERSION}.tar.gz
