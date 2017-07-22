@@ -1,3 +1,5 @@
+[![Latest](https://img.shields.io/github/release/YoshinoriN/docker-redmine-orchestration.svg?style=flat-square)](https://github.com//YoshinoriN/docker-redmine-orchestration/releases/latest)
+
 # Redmine 
 
 [日本語はこちら](/doc/README_JA.md)

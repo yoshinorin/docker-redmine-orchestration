@@ -1,3 +1,5 @@
+[![Latest](https://img.shields.io/github/release/YoshinoriN/docker-redmine-orchestration.svg?style=flat-square)](https://github.com//YoshinoriN/docker-redmine-orchestration/releases/latest)
+
 # 補足記事
 
 このリポジトリの補足記事は[こちらです](https://yoshinorin.net/2017/01/04/redmine-based-on-nginx-unicorn-mariadb-using-by-docker-compose/)
