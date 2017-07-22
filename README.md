@@ -213,9 +213,6 @@ Please execute `backup.sh`. Back up files are create in `buckups` directory by `
 # Direcroty Hierarchy
 
 ```sh
-
-.
-
 .
 ├── backups
 ├── backup.sh
