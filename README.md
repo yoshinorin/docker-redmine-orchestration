@@ -215,54 +215,55 @@ Please execute `backup.sh`. Back up files are create in `buckups` directory by `
 ```sh
 
 .
-|-- doc
-|   |-- img
-|   |   `-- overview.png
-|   |-- overview.pptx
-|   `-- README_JA.md
-|-- README.md
-`-- redmine
-    |-- backups
-    |-- backup.sh
-    |-- create_images.sh
-    |-- docker-compose.yml
-    |-- export_images.sh
-    |-- images
-    |-- import_images.sh
-    |-- load_images.sh
-    |-- logs
-    |   |-- nginx
-    |   `-- redmine
-    |-- mariadb
-    |   |-- config
-    |   |   `-- my.cnf
-    |   `-- Dockerfile
-    |-- nginx
-    |   |-- config
-    |   |   `-- nginx.conf
-    |   `-- Dockerfile
-    |-- redmine
-    |   |-- docker-entrypoint.sh
-    |   |-- Dockerfile
-    |   |-- Gemfile
-    |   |-- README.md
-    |   |-- redmine
-    |   |   `-- config
-    |   |       |-- configuration.yml
-    |   |       |-- database.yml
-    |   |       `-- unicorn.rb
-    |   |-- redmine_3.3.0_download.sh
-    |   |-- redmine_3.3.1_download.sh
-    |   `-- redmine_download_main.sh
-    `-- storage
-        |-- git-storage
-        |   |-- Dockerfile
-        |   `-- repositories
-        |       `-- README.md
-        |-- mariadb-storage
-        |   |-- data
-        |   `-- Dockerfile
-        `-- redmine-files
-            |-- Dockerfile
-            `-- files
+
+.
+├── backups
+├── backup.sh
+├── circle.yml
+├── create_images.sh
+├── doc
+│   ├── img
+│   │   └── overview.png
+│   ├── overview.pptx
+│   └── README_JA.md
+├── docker-compose.yml
+├── export_images.sh
+├── images
+├── import_images.sh
+├── LICENSE
+├── load_images.sh
+├── logs
+│   ├── nginx
+│   └── redmine
+├── mariadb
+│   ├── config
+│   │   └── my.cnf
+│   └── Dockerfile
+├── nginx
+│   ├── config
+│   │   └── nginx.conf
+│   └── Dockerfile
+├── README.md
+├── redmine
+│   ├── docker-entrypoint.sh
+│   ├── Dockerfile
+│   ├── Gemfile
+│   ├── README.md
+│   ├── redmine_download.sh
+│   └── src
+│       └── config
+│           ├── configuration.yml
+│           ├── database.yml
+│           └── unicorn.rb
+└── storage
+    ├── git-storage
+    │   ├── Dockerfile
+    │   └── repositories
+    │       └── README.md
+    ├── mariadb-storage
+    │   ├── data
+    │   └── Dockerfile
+    └── redmine-files
+        ├── Dockerfile
+        └── files
 ```
