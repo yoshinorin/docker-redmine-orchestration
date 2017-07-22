@@ -22,8 +22,6 @@ Docker-composeで構築できるRedmineです。
 * Ruby 2.4.1
 * Unicorn 5.3.0
 
-Redmineはダウンロード用のシェルスクリプトによって動作バージョンを変更できるようにしています。
-
 # Docker公式のRedmineとの相違点
 
 |-|公式|本リポジトリ|
