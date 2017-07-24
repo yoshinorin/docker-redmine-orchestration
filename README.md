@@ -1,14 +1,11 @@
 ![](https://img.shields.io/badge/Redmine-v3.4.2-blue.svg)
+[![CircleCI](https://circleci.com/gh/YoshinoriN/docker-redmine-orchestration.svg?style=svg)](https://circleci.com/gh/YoshinoriN/docker-redmine-orchestration)
 
-# Redmine 
+# docker-redmine-orchestration 
+
+A easy and fast docker-compose for Redmine (Nginx + Unicorn + MariaDB)
 
 [日本語はこちら](/doc/README_JA.md)
-
-# CI
-
-|Build|
-|---|
-|[![CircleCI](https://circleci.com/gh/YoshinoriN/docker-redmine-orchestration.svg?style=svg)](https://circleci.com/gh/YoshinoriN/docker-redmine-orchestration)|
 
 # Architecture
 
