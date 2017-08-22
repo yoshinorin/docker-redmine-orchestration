@@ -22,8 +22,8 @@ Docker-composeで構築できるRedmineです。
 |-|公式|本リポジトリ|
 |---|---|---|
 |DB|MySQL|MariaDB|
-|Webサーバー|webrickもしくはpassenger|Nginx|
-|Railsサーバー|webrickもしくはpassenger|unicorn|
+|Webサーバー|-|Nginx|
+|Applicationサーバー|webrickもしくはpassenger|unicorn|
 
 その他の相違点は確認していません。
 
