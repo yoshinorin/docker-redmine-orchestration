@@ -19,7 +19,7 @@ A easy and fast docker-compose for Redmine (Nginx + Unicorn + MariaDB)
 |-|Official|This application|
 |---|---|---|
 |DB|MySQL|MariaDB|
-|Web server|webrick or passenger|Nginx|
+|Web server|-|Nginx|
 |Rails server|webrick or passenger|unicorn|
 
 # Requirements
