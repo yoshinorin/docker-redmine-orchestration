@@ -22,6 +22,7 @@ services:
     depends_on:
       - redmine
     command: ["nginx", "-g", "daemon off;"]
+    restart: unless-stopped
   mariadb-storage:
     build: ./storage/mariadb-storage
     container_name: mariadb-storage
@@ -29,6 +30,7 @@ services:
     #  TZ: Asia/Tokyo # Please set time zone if you want to change it.
     volumes:
      - ./storage/mariadb-storage/data:/var/lib/mysql
+    restart: unless-stopped
   mariadb:
     build: ./mariadb
     container_name: mariadb
@@ -51,6 +53,7 @@ services:
     depends_on:
       - mariadb-storage
     command: mysqld
+    restart: unless-stopped
   redmine-files:
     build: ./storage/redmine-files
     container_name: redmine-files
@@ -58,6 +61,7 @@ services:
     #  TZ: Asia/Tokyo # Please set time zone if you want to change it.
     volumes:
      - ./storage/redmine-files/files:/usr/src/app/redmine/files
+    restart: unless-stopped
   git-storage:
     build: ./storage/git-storage
     container_name: git-storage
@@ -65,6 +69,7 @@ services:
     #  TZ: Asia/Tokyo # Please set time zone if you want to change it.
     volumes:
      - ./storage/git-storage/repositories:/usr/src/git
+    restart: unless-stopped
   redmine:
     build: ./redmine
     container_name: redmine
@@ -98,6 +103,7 @@ services:
       - ./redmine/src/plugins/:/usr/src/app/redmine/plugins/
       # TODO : Sync host machine's source code.
       #- ./redmine/redmine/app/:/usr/src/app/redmine/app/
+    restart: unless-stopped
 networks:
   app_net:
     driver: bridge
