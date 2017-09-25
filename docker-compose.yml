@@ -11,8 +11,6 @@ services:
     #NOTE : TLS key's path for HTTPS
     # - <host ssl_certificate key's path> : <nginx.conf ssl_certificate key's path>
     # - <host ssl_certificate_key key's path> : <nginx.conf  ssl_certificate_key key's path>
-    networks:
-      - app_net
     hostname: nginx
     ports:
       - "3000:3000"
@@ -45,8 +43,6 @@ services:
     volumes:
       - /var/lib/mysql
       - ./mariadb/config/my.cnf:/etc/mysql/my.cnf
-    networks:
-      - app_net
     hostname: mariadb
     expose:
       - "3306"
@@ -79,8 +75,6 @@ services:
       DB_PING_USER: redmine
       DB_PING_USER_PASSWORD: redmine
       #TZ: Asia/Tokyo # Please set time zone if you want to change it.
-    networks:
-      - app_net
     hostname: redmine
     expose:
       - "3000"
@@ -104,6 +98,3 @@ services:
       # TODO : Sync host machine's source code.
       #- ./redmine/redmine/app/:/usr/src/app/redmine/app/
     restart: unless-stopped
-networks:
-  app_net:
-    driver: bridge
