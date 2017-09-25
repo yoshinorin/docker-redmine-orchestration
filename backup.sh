@@ -22,17 +22,4 @@ sudo docker run --volumes-from redmine-files -v $(pwd)/${ROOT_DIR_NAME}/${SUB_DI
 sudo docker run --volumes-from git-storage -v $(pwd)/${ROOT_DIR_NAME}/${SUB_DIR_NAME}/:/${ROOT_DIR_NAME}/${SUB_DIR_NAME}/ \
   ${IMAGE_BASE_NAME}_git-storage:latest tar cvf /${ROOT_DIR_NAME}/${SUB_DIR_NAME}/${FILE_PREFIX}_git_repositories.tar /usr/src/git
 
-
-#if [ -n $1 ]; then
-#  echo "[INFO] Application Container backup."
-#  if [ $1 = "-f" ]; then
-#    docker export redmine-files > ./${ROOT_DIR_NAME}/`date +%Y%m%d`/`date +%Y%m%d_%H%M%S`_app_nginx.tar.gz
-#    docker export mariadb-storage > ./${ROOT_DIR_NAME}/`date +%Y%m%d`/`date +%Y%m%d_%H%M%S`_app_mariadb.tar.gz
-#    docker export mariadb-storage > ./${ROOT_DIR_NAME}/`date +%Y%m%d`/`date +%Y%m%d_%H%M%S`_app_redmine.tar.gz
-#  else
-#    echo "[ERROR] Argument1 is error."
-#    echo "-f : full backup."
-#  fi
-#fi
-
 echo "[INFO] Finish backup."
