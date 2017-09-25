@@ -74,6 +74,8 @@ services:
       PLUGINS_MIGRATE: 1
       DB_PING_USER: redmine
       DB_PING_USER_PASSWORD: redmine
+      UNICORN_WORKER_PROCESS: 2
+      UNICORN_TIMEOUT: 60
       #TZ: Asia/Tokyo # Please set time zone if you want to change it.
     hostname: redmine
     expose:

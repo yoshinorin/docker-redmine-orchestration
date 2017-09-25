@@ -2,8 +2,8 @@ rails_root = File.expand_path('../../', __FILE__)
 
 ENV['BUNDLE_GEMFILE'] = rails_root + "/Gemfile"
 
-worker_processes 2
-timeout 60
+worker_processes = (ENV['UNICORN_WORKER_PROCESS'] || 2 ).to_i
+timeout = (ENV['UNICORN_TIMEOUT'] || 60 ).to_i
 
 stderr_path File.expand_path('../../log/unicorn_stderr.log', __FILE__)
 stdout_path File.expand_path('../../log/unicorn_stdout.log', __FILE__)
