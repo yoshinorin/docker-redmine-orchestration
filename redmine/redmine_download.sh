@@ -17,6 +17,7 @@ set -- $line
 if [ $MD5_CHECKSUM = $1 ];then
   tar xvfz redmine-${REDMINE_VERSION}.tar.gz
   cp -Rf redmine-${REDMINE_VERSION}/. src
+  cp -f config.ru src/config.ru
   rm -rf redmine-${REDMINE_VERSION}
   rm -rf redmine/redmine-${REDMINE_VERSION}
   rm redmine-${REDMINE_VERSION}.tar.gz

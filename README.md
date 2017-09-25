@@ -175,6 +175,12 @@ You can configure unicorn server settings using by `docker-compose.yml` below di
 |---|---|---|
 |UNICORN_WORKER_PROCESS|Number of unicorn worker processes|2|
 |UNICORN_TIMEOUT|Timeout|60|
+|UNICORN_WOKER_KILLER_MEMORY_MIN|Memory min threshold. Unit is MB.|192|
+|UNICORN_WOKER_KILLER_MEMORY_MAX|Memory max threshold. Unit is MB.|256|
+|UNICORN_WOKER_KILLER_CHECK_CYCLE|Unicorn worker killer check cycle.|16|
+|UNICORN_WOKER_KILLER_VERBOSE|Unicorn worker killer logging.|false|
+
+About unicorn-worker-killer settings, please see [unicorn-worker-killer repository](https://github.com/kzk/unicorn-worker-killer).
 
 # Container's time zone
 

@@ -76,6 +76,11 @@ services:
       DB_PING_USER_PASSWORD: redmine
       UNICORN_WORKER_PROCESS: 2
       UNICORN_TIMEOUT: 60
+      # Unicorn worker killer settings. https://github.com/kzk/unicorn-worker-killer
+      UNICORN_WOKER_KILLER_MEMORY_MIN: 192  # Memory min threshold. Unit is MB.
+      UNICORN_WOKER_KILLER_MEMORY_MAX: 256  # Memory max threshold. Unit is MB.
+      UNICORN_WOKER_KILLER_CHECK_CYCLE: 16
+      UNICORN_WOKER_KILLER_VERBOSE: 0
       #TZ: Asia/Tokyo # Please set time zone if you want to change it.
     hostname: redmine
     expose:
@@ -95,6 +100,7 @@ services:
       - ./redmine/src/config/configuration.yml:/usr/src/app/redmine/config/configuration.yml
       - ./redmine/src/config/database.yml:/usr/src/app/redmine/config/database.yml
       - ./redmine/src/config/unicorn.rb:/usr/src/app/redmine/config/unicorn.rb
+      - ./redmine/src/config.ru:/usr/src/app/redmine/config.ru
       - ./redmine/src/public/themes:/usr/src/app/redmine/public/themes
       - ./redmine/src/plugins/:/usr/src/app/redmine/plugins/
       # TODO : Sync host machine's source code.

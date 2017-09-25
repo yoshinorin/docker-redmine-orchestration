@@ -178,6 +178,12 @@ server {
 |---|---|---|
 |UNICORN_WORKER_PROCESS|ワーカープロセス数|2|
 |UNICORN_TIMEOUT|タイムアウト|60|
+|UNICORN_WOKER_KILLER_MEMORY_MIN|ワーカープロセス再起動の最低閾値（単位MB）|192|
+|UNICORN_WOKER_KILLER_MEMORY_MAX|ワーカープロセス再起動の最大閾値（単位MB）|256|
+|UNICORN_WOKER_KILLER_CHECK_CYCLE|ワーカープロセス再起動のチェックサイクル|16|
+|UNICORN_WOKER_KILLER_VERBOSE|Unicorn worker killerのロギング|false|
+
+unicorn-worker-killer については [unicorn-worker-killer](https://github.com/kzk/unicorn-worker-killer)のリポジトリを参照ください。
 
 # タイムゾーン
 
