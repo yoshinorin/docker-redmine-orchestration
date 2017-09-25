@@ -13,7 +13,6 @@ WORKDIR /usr/src/app/redmine
 COPY ./src /usr/src/app/redmine
 COPY docker-entrypoint.sh /usr/src/app/redmine
 COPY Gemfile /usr/src/app/redmine
-COPY config.ru /usr/src/app/redmine
 
 RUN gem install bundler -v 1.14.6 --no-rdoc --no-ri \
   && bundle install --jobs=10 --without development test \
