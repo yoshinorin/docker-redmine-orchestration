@@ -211,15 +211,6 @@ Redmineコンテナ側のリポジトリのパスは下記のディレクトリ�
 
 MariaDBに関しては現状データベースファイルが丸ごとバックアップされます。Redmineデータベースのみのバックアップスクリプトは作成予定です。
 
-# その他スクリプト
-
-下記4つのスクリプトは一応動作しますが、正常にエクスポート/インポート/生成/ロードできるか確認できていません。
-
-* export_images.sh
-* import_images.sh
-* create_images.sh
-* load_images.sh
-
 # リポジトリの構成
 
 ```sh
@@ -227,18 +218,14 @@ MariaDBに関しては現状データベースファイルが丸ごとバック�
 ├── backups
 ├── backup.sh
 ├── circle.yml
-├── create_images.sh
 ├── doc
 │   ├── img
 │   │   └── overview.png
 │   ├── overview.pptx
 │   └── README_JA.md
 ├── docker-compose.yml
-├── export_images.sh
 ├── images
-├── import_images.sh
 ├── LICENSE
-├── load_images.sh
 ├── logs
 │   ├── nginx
 │   └── redmine

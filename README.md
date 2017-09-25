@@ -214,18 +214,14 @@ Please execute `backup.sh`. Back up files are create in `buckups` directory by `
 ├── backups
 ├── backup.sh
 ├── circle.yml
-├── create_images.sh
 ├── doc
 │   ├── img
 │   │   └── overview.png
 │   ├── overview.pptx
 │   └── README_JA.md
 ├── docker-compose.yml
-├── export_images.sh
 ├── images
-├── import_images.sh
 ├── LICENSE
-├── load_images.sh
 ├── logs
 │   ├── nginx
 │   └── redmine
