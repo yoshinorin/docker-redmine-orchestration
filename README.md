@@ -167,6 +167,15 @@ After that these plugins were installed
 
 Are plugins installed every docker compose up. This behavior for flexible install. (User can select what plugin do you use and uninstall every time easily.)
 
+# Unicorn server
+
+You can configure unicorn server settings using by `docker-compose.yml` below directive.
+
+|NAME|PORPOSE|VALUE(DEFAULT)|
+|---|---|---|
+|UNICORN_WORKER_PROCESS|Number of unicorn worker processes|2|
+|UNICORN_TIMEOUT|Timeout|60|
+
 # Container's time zone
 
 If you want to change container's time zone. Please add `TZ` key to each container using by `docker-compose.yml`.
