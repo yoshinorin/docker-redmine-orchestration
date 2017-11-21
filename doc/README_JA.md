@@ -44,7 +44,7 @@ Docker-composeで構築できるRedmineです。
 
 ## インストール
 
-`./redmine/src`ディレクトリ内にある`redmine_download.sh`を実行してください。
+`./redmine`ディレクトリ内にある`redmine_download.sh`を実行してください。
 
 ダウンロード完了後は`./redmine/src/config`内の各種設定ファイルを任意の設定に変更してください。
 

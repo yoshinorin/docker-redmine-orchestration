@@ -38,7 +38,7 @@ The git were installed in the Redmine container and the Redmine's `configuration
 
 ## Install
 
-* At first. Download Redmine's source code using by `./redmine/src/redmine_download.sh`.
+* At first. Download Redmine's source code using by `./redmine/redmine_download.sh`.
 
 * Second. Please change Redmine's setting.
     * Redmine's setting files are contain in the `./redmine/src/config` directory.
