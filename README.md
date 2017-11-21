@@ -19,7 +19,7 @@ A easy and fast docker-compose for Redmine (Nginx + Unicorn + MariaDB)
 |-|Official|This application|
 |---|---|---|
 |DB|MySQL|MariaDB|
-|Web server|-|Nginx|
+|Web server|-|Nginx (Also you can ignore it)|
 |Application server|webrick or passenger|unicorn|
 
 # Requirements
@@ -38,10 +38,10 @@ The git were installed in the Redmine container and the Redmine's `configuration
 
 ## Install
 
-* At first. Download Redmine's source code using by `redmine_download.sh`.
+* At first. Download Redmine's source code using by `./redmine/src/redmine_download.sh`.
 
 * Second. Please change Redmine's setting.
-    * Redmine's setting files are contain in the `./src/config` directory.
+    * Redmine's setting files are contain in the `./redmine/src/config` directory.
 
 ## Docker compose up
 
@@ -59,7 +59,7 @@ After first build, please change `RAILS_MIGRATE` value to `0` in the `docker-com
 
 ## MariaDB
 
-Please change `redmine/mariadb/config/my.cnf`.
+Please change `./mariadb/config/my.cnf`.
 Also you can change it after build image.
 
 ### Character set
@@ -82,7 +82,7 @@ Default character set is `UTF-8`.
 
 You can remove `MYSQL_ROOT_PASSWORD` key in `docker-compose.yml`, after first docker image build.
 
-If you change `MYSQL_USER` and `MYSQL_DATABASE`. You have to change `redmine/redmine/config/database.yml` and `DB_PING_USER` and `DB_PING_USER_PASSWORD`.
+If you change `MYSQL_USER` and `MYSQL_DATABASE`. You have to change `./redmine/src/config/database.yml` and `DB_PING_USER` and `DB_PING_USER_PASSWORD`.
 
 ```yml
   redmine:
@@ -100,21 +100,33 @@ Redmine container have to start after MariaDB container. So,
 ### Directory connecting
 
 The default setting you can't connect MariaDB directly.
-If you want to connect directly, please add below key in `docker-compose.yml`.
+If you want to connect directly, please add below key in `mariadb` key.
 
 ```yml
-mariadb:
     ports:
       - "3306:3306"
 ```
 
 You can connect MariaDB directory using by `3306` port. Also you can change port number.
 
-
-## Nginx
+## nginx
 
 Please change `./nginx/config/nginx.conf`.
 Also you can change it after build image.
+
+
+### Ignore nginx
+
+既にWebサーバが存在する等の理由でnginxを無効にしたい場合は`docker-compose.yml`のnginx関連のコンテナをコメントアウトしてください。
+そのうえで`docker-compose.yml`の`redmine`キー内にに下記を追記してください。
+
+If you want ingnore nginx (for example you have already use other webserver.) please commented out `nginx` key in `docker-compose.yml`.
+And add below key in `redmine` key.
+
+```yml
+    ports:
+      - "3000:3000"
+```
 
 ### HTTPS
 
@@ -150,7 +162,7 @@ Also you can change it after build image.
 
 ### Install plugins
 
-Please put plugins in the `redmine/redmine/redmine/plugins` directory.
+Please put plugins in the `./redmine/src/plugins` directory.
 
 And please set `PLUGINS_MIGRATE` key's value to `1`.
 
@@ -198,10 +210,6 @@ Below is example.
      - ./storage/mariadb-storage/data:/var/lib/mysql
 ```
 
-# Others
-
-You can customize other settings using by `docker-compose.yml`
-
 # git
 
 If you integrate git repositories with Redmine. Please create repositories below directory.
@@ -221,6 +229,10 @@ And above directory are mount below directory in Redmine container.
 # Back up
 
 Please execute `backup.sh`. Back up files are create in `buckups` directory by `tar` format.
+
+# Others
+
+You can customize other settings using by `docker-compose.yml`
 
 # Direcroty Hierarchy
 

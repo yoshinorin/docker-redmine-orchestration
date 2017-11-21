@@ -22,7 +22,7 @@ Docker-composeで構築できるRedmineです。
 |-|公式|本リポジトリ|
 |---|---|---|
 |DB|MySQL|MariaDB|
-|Webサーバー|-|Nginx|
+|Webサーバー|-|Nginx (無効にすることは可能です)|
 |Applicationサーバー|webrickもしくはpassenger|unicorn|
 
 その他の相違点は確認していません。
@@ -44,9 +44,9 @@ Docker-composeで構築できるRedmineです。
 
 ## インストール
 
-`./src`ディレクトリ内にある`redmine_download.sh`を実行してください。
+`./redmine/src`ディレクトリ内にある`redmine_download.sh`を実行してください。
 
-ダウンロード完了後は`./src/config`内の各種設定ファイルを任意の設定に変更してください。
+ダウンロード完了後は`./redmine/src/config`内の各種設定ファイルを任意の設定に変更してください。
 
 ## 実行
 
@@ -64,7 +64,7 @@ docker-compose up
 
 ## MariaDB
 
-MariaDBそのものの設定に関しては`Redmine/mariadb/config/my.cnf`を変更することでコンテナ側に反映されます。
+MariaDBそのものの設定に関しては`./mariadb/config/my.cnf`を変更することでコンテナ側に反映されます。
 ビルド後も変更可能です。
 
 ただし、ユーザーやパスワードはビルド時に`docker-compose.yml`で作成されます。
@@ -87,7 +87,7 @@ MariaDBの文字コードはUTF-8に設定しています。
       MYSQL_DATABASE: redmine
 ```
 
-変更した場合はあわせて`Redmine/redmine/config/database.yml`も変更してください。初回のビルド後は`MYSQL_ROOT_PASSWORD`は削除可能です。
+変更した場合はあわせて`./redmine/src/config/database.yml`も変更してください。初回のビルド後は`MYSQL_ROOT_PASSWORD`は削除可能です。
 
 加えて下記も変更してください。下記はDocker composeで起動した際にMariaDBが先に起動するのを確認するためにpingを打っています。
 
@@ -112,10 +112,20 @@ MariaDBの文字コードはUTF-8に設定しています。
       - "3306:3306"
 ```
 
-## Nginx
+## nginx
 
 `./nginx/config/nginx.conf`を変更することでコンテナ側に反映されます。
 ビルド後も変更可能です。
+
+### 無効にする
+
+既にWebサーバが存在する等の理由でnginxを無効にしたい場合は`docker-compose.yml`のnginx関連のコンテナをコメントアウトしてください。
+そのうえで`docker-compose.yml`の`redmine`キー内にに下記を追記してください。
+
+```yml
+    ports:
+      - "3000:3000"
+```
 
 ### HTTPS
 
@@ -153,7 +163,7 @@ server {
 
 ### Redmineプラグインをインストールする場合
 
-`Redmine/redmine/redmine/plugins`内にpluginを配置してください。
+`./redmine/src/plugins`内にpluginを配置してください。
 
 その後は下記の`PLUGINS_MIGRATE`を`1`に設定してください。コンテナ起動と同時にプラグインのインストールがはじまります。
 
@@ -199,10 +209,6 @@ unicorn-worker-killer については [unicorn-worker-killer](https://github.com
      - ./storage/mariadb-storage/data:/var/lib/mysql
 ```
 
-# その他の設定
-
-その他設定変更したい場合は`docker-compose.yml`を変更してください。
-
 # git
 
 下記のディレクトリにリポジトリを作成した場合にリポジトリをRedmine側のコンテナにマウントするように設定しています。
@@ -219,12 +225,15 @@ Redmineコンテナ側のリポジトリのパスは下記のディレクトリ�
 /usr/src/git/<your-repository>
 ```
 
-
 # バックアップ
 
 `backup.sh`を実行することで`buckups`ディレクトリ内に「gitリポジトリ/Redmineのfile/MariaDBのデータベース一式」がtar形式で保存されます。
 
 MariaDBに関しては現状データベースファイルが丸ごとバックアップされます。Redmineデータベースのみのバックアップスクリプトは作成予定です。
+
+# その他の設定
+
+その他設定変更したい場合は`docker-compose.yml`を変更してください。
 
 # リポジトリの構成
 
