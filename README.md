@@ -117,9 +117,6 @@ Also you can change it after build image.
 
 ### Ignore nginx
 
-既にWebサーバが存在する等の理由でnginxを無効にしたい場合は`docker-compose.yml`のnginx関連のコンテナをコメントアウトしてください。
-そのうえで`docker-compose.yml`の`redmine`キー内にに下記を追記してください。
-
 If you want ingnore nginx (for example you have already use other webserver.) please commented out `nginx` key in `docker-compose.yml`.
 And add below key in `redmine` key.
 
