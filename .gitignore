@@ -1,3 +1,11 @@
+# General
+*.log
+
+# Files
+storage/git-storage
+storage/mariadb-storage
+storage/redmine-files
+
 # For Redmine assests
 
 redmine/redmine/.project
