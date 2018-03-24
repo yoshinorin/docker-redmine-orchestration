@@ -13,9 +13,9 @@ Docker-composeで構築できるRedmineです。
 # 構成
 
 * MariaDB 10.3.0
-* Nginx 1.13.3  (無効にすることも可能です)
+* Nginx 1.13.9 (無効にすることも可能です)
 * Ruby 2.4.1
-* Unicorn 5.3.0
+* Unicorn 5.4.0
 
 # Docker公式のRedmineとの相違点
 
@@ -71,7 +71,7 @@ MariaDBそのものの設定に関しては`./mariadb/config/my.cnf`を変更す
 
 ### 文字コード
 
-MariaDBの文字コードはUTF-8に設定しています。
+MariaDBの文字コードは`utf8mb4`に設定しています。
 
 ### ユーザーとパスワード
 

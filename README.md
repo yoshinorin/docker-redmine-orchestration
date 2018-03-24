@@ -10,9 +10,9 @@ A easy and fast docker-compose for Redmine (Nginx + Unicorn + MariaDB)
 # Architecture
 
 * MariaDB 10.3.0
-* Nginx 1.13.3 (Also you can ignore it)
+* Nginx 1.13.9 (Also you can ignore it)
 * Ruby 2.4.1
-* Unicorn 5.3.0
+* Unicorn 5.4.0
 
 # what is difference between official docker-redmine ?
 
@@ -64,7 +64,7 @@ Also you can change it after build image.
 
 ### Character set
 
-Default character set is `UTF-8`.
+Default character set is `utf8mb4`.
 
 ### User and password
 
