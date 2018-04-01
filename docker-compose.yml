@@ -28,7 +28,6 @@ services:
     #  TZ: Asia/Tokyo # Please set time zone if you want to change it.
     volumes:
      - ./storage/mariadb-storage/data:/var/lib/mysql
-    restart: unless-stopped
   mariadb:
     build: ./mariadb
     container_name: mariadb
@@ -57,7 +56,6 @@ services:
     #  TZ: Asia/Tokyo # Please set time zone if you want to change it.
     volumes:
      - ./storage/redmine-files/files:/usr/src/app/redmine/files
-    restart: unless-stopped
   git-storage:
     build: ./storage/git-storage
     container_name: git-storage
@@ -65,7 +63,6 @@ services:
     #  TZ: Asia/Tokyo # Please set time zone if you want to change it.
     volumes:
      - ./storage/git-storage/repositories:/usr/src/git
-    restart: unless-stopped
   redmine:
     build: ./redmine
     container_name: redmine
