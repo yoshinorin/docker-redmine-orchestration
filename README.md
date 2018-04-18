@@ -20,7 +20,8 @@ A easy and fast docker-compose for Redmine (Nginx + Unicorn + MariaDB)
 |---|---|---|
 |DB|MySQL|MariaDB|
 |Web server|-|Nginx (Also you can ignore it)|
-|Application server|webrick or passenger|unicorn|
+|Application server|webrick or passenger|unicorn (Include unicorn worker killer)|
+|Version Control System|-|Bundled with git|
 
 # Requirements
 
@@ -114,7 +115,6 @@ You can connect MariaDB directory using by `3306` port. Also you can change port
 Please change `./nginx/config/nginx.conf`.
 Also you can change it after build image.
 
-
 ### Ignore nginx
 
 If you want ingnore nginx (for example you have already use other webserver.) please commented out `nginx` key in `docker-compose.yml`.
@@ -174,7 +174,7 @@ And please set `PLUGINS_MIGRATE` key's value to `1`.
 
 After that these plugins were installed 
 
-Are plugins installed every docker compose up. This behavior for flexible install. (User can select what plugin do you use and uninstall every time easily.)
+All plugins will install every time when docker compose up. This behavior for flexible install. (User can select what plugin do you use and uninstall every time easily. On the other hand, plugins install when every time starts docker. But, theses process is no effect on data.)
 
 # Unicorn server
 

@@ -13,7 +13,7 @@ Docker-composeで構築できるRedmineです。
 # 構成
 
 * MariaDB 10.3.0
-* Nginx 1.13.12 (無効にすることも可能です)
+* Nginx 1.13.12 (無効にできます)
 * Ruby 2.4.1
 * Unicorn 5.4.0
 
@@ -22,8 +22,9 @@ Docker-composeで構築できるRedmineです。
 |-|公式|本リポジトリ|
 |---|---|---|
 |DB|MySQL|MariaDB|
-|Webサーバー|-|Nginx (無効にすることも可能です)|
-|Applicationサーバー|webrickもしくはpassenger|unicorn|
+|Webサーバー|-|Nginx (無効にできます)|
+|Applicationサーバー|webrickもしくはpassenger|unicorn (unicorn worker killer インストール済み)|
+|バージョン管理|-|gitインストール済み|
 
 その他の相違点は確認していません。
 
@@ -161,7 +162,7 @@ server {
 `./redmine/src/config`内の各設定ファイルを変更することでコンテナ側に反映されます。
 ビルド後も変更可能です。
 
-### Redmineプラグインをインストールする場合
+### プラグインのインストール
 
 `./redmine/src/plugins`内にpluginを配置してください。
 
@@ -178,7 +179,7 @@ server {
       DB_PING_USER_PASSWORD: mypass 
 ```
 
-なお、ユーザーが使用するプラグインを柔軟にインストールできるように、コンテナ起動時に都度インストールするようにしています。これにより、インストールのたびにイメージを再作成する手間を省いています。
+なお、ユーザーが使用するプラグインを柔軟にインストールできるように、コンテナ起動時に都度インストールするようにしています。これにより、インストールのたびにイメージを再作成する手間を省いています。（反面、dockerの起動都度、プラグインのインストール処理が実行されます。データには影響はありません。）
 
 # Unicornサーバ
 
