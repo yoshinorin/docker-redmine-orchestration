@@ -13,7 +13,7 @@ Docker-composeで構築できるRedmineです。
 # 構成
 
 * MariaDB 10.3.0
-* Nginx 1.13.9 (無効にすることも可能です)
+* Nginx 1.13.12 (無効にすることも可能です)
 * Ruby 2.4.1
 * Unicorn 5.4.0
 
