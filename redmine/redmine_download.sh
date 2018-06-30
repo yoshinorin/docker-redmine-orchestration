@@ -1,7 +1,7 @@
 #!/bin/sh
 
-REDMINE_VERSION="3.4.5"
-MD5_CHECKSUM="1c61ccbf3f597ebceefb05b60cc1947b"
+REDMINE_VERSION="3.4.6"
+MD5_CHECKSUM="5f4993446ecf25782f469763c0d32ea1"
 
 echo "[INFO] Downloading..."
 
