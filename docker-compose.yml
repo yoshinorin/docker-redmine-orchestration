@@ -24,8 +24,6 @@ services:
   mariadb-storage:
     build: ./storage/mariadb-storage
     container_name: mariadb-storage
-    #environment:
-    #  TZ: Asia/Tokyo # Please set time zone if you want to change it.
     volumes:
      - ./storage/mariadb-storage/data:/var/lib/mysql
   mariadb:
@@ -52,15 +50,11 @@ services:
   redmine-files:
     build: ./storage/redmine-files
     container_name: redmine-files
-    #environment:
-    #  TZ: Asia/Tokyo # Please set time zone if you want to change it.
     volumes:
      - ./storage/redmine-files/files:/usr/src/app/redmine/files
   git-storage:
     build: ./storage/git-storage
     container_name: git-storage
-    #environment:
-    #  TZ: Asia/Tokyo # Please set time zone if you want to change it.
     volumes:
      - ./storage/git-storage/repositories:/usr/src/git
   redmine:
