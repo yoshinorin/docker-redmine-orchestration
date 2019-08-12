@@ -25,7 +25,7 @@ A easy and fast docker-compose for Redmine (Nginx + Unicorn + MariaDB)
 
 # Requirements
 
-* Higher than Docker compose 1.6
+* Higher than Docker compose 3
 
 # Overview
 

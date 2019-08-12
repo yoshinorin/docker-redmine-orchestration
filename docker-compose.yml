@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   nginx:
     build: ./nginx
@@ -21,11 +21,6 @@ services:
       - redmine
     command: ["nginx", "-g", "daemon off;"]
     restart: unless-stopped
-  mariadb-storage:
-    build: ./storage/mariadb-storage
-    container_name: mariadb-storage
-    volumes:
-     - ./storage/mariadb-storage/data:/var/lib/mysql
   mariadb:
     build: ./mariadb
     container_name: mariadb
@@ -35,28 +30,14 @@ services:
       MYSQL_PASSWORD: redmine
       MYSQL_DATABASE: redmine
       #TZ: Asia/Tokyo # Please set time zone if you want to change it.
-    volumes_from:
-      - mariadb-storage
     volumes:
-      - /var/lib/mysql
       - ./mariadb/config/my.cnf:/etc/mysql/my.cnf
+      - ./storage/mariadb-storage/data:/var/lib/mysql
     hostname: mariadb
     expose:
       - "3306"
-    depends_on:
-      - mariadb-storage
     command: mysqld
     restart: unless-stopped
-  redmine-files:
-    build: ./storage/redmine-files
-    container_name: redmine-files
-    volumes:
-     - ./storage/redmine-files/files:/usr/src/app/redmine/files
-  git-storage:
-    build: ./storage/git-storage
-    container_name: git-storage
-    volumes:
-     - ./storage/git-storage/repositories:/usr/src/git
   redmine:
     build: ./redmine
     container_name: redmine
@@ -80,13 +61,10 @@ services:
       - mariadb
     depends_on:
       - mariadb
-      - redmine-files
-      - git-storage
-    volumes_from:
-      - redmine-files
-      - git-storage
     volumes:
       - ./logs/redmine/:/usr/src/app/redmine/log/
+      - ./storage/redmine-files/files:/usr/src/app/redmine/files
+      - ./storage/git-storage/repositories:/usr/src/git
       # for configuration
       - ./redmine/src/config/configuration.yml:/usr/src/app/redmine/config/configuration.yml
       - ./redmine/src/config/database.yml:/usr/src/app/redmine/config/database.yml
