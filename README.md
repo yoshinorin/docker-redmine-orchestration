@@ -9,8 +9,8 @@ A easy and fast docker-compose for Redmine (Nginx + Unicorn + MariaDB)
 
 # Architecture
 
-* Nginx 1.15.0 (Also you can ignore it)
 * MariaDB 10.4.x
+* Nginx 1.16 (Also you can ignore it)
 * Ruby 2.4.1
 * Unicorn 5.4.0
 
