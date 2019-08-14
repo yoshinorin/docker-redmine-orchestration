@@ -14,7 +14,7 @@ COPY ./src /usr/src/app/redmine
 COPY docker-entrypoint.sh /usr/src/app/redmine
 COPY Gemfile /usr/src/app/redmine
 
-RUN gem install bundler -v 1.14.6 --no-rdoc --no-ri \
+RUN gem install bundler -v 1.7.0 --no-document \
   && bundle install --jobs=10 --without development test \
   && bundle exec rake generate_secret_token \
   && chmod 0700 docker-entrypoint.sh \
