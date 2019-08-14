@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Redmine-v3.4.6-blue.svg)
+![](https://img.shields.io/badge/Redmine-v4.0.4-blue.svg)
 [![CircleCI](https://circleci.com/gh/YoshinoriN/docker-redmine-orchestration.svg?style=svg)](https://circleci.com/gh/YoshinoriN/docker-redmine-orchestration)
 
 # docker-redmine-orchestration 
@@ -12,7 +12,7 @@ A easy and fast docker-compose for Redmine (Nginx + Unicorn + MariaDB)
 * MariaDB 10.4.x
 * Nginx 1.16 (Also you can ignore it)
 * Ruby 2.4.1
-* Unicorn 5.4.0
+* Unicorn 5.5.1
 
 # what is difference between official docker-redmine ?
 
@@ -271,13 +271,10 @@ You can customize other settings using by `docker-compose.yml`
 │           └── unicorn.rb
 └── storage
     ├── git-storage
-    │   ├── Dockerfile
     │   └── repositories
     │       └── README.md
     ├── mariadb-storage
-    │   ├── data
-    │   └── Dockerfile
+    │   └── data
     └── redmine-files
-        ├── Dockerfile
         └── files
 ```
