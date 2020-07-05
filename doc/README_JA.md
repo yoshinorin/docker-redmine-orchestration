@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Redmine-v4.0.4-blue.svg)
+![](https://img.shields.io/badge/Redmine-v4.1.1-blue.svg)
 
 # 補足記事
 
@@ -11,8 +11,8 @@ Docker-composeで構築できるRedmineです。
 
 # 構成
 
-* MariaDB 10.4.x
-* Nginx 1.16.0 (無効にできます)
+* MariaDB 10.5.x
+* Nginx 1.19.0 (無効にできます)
 * Ruby 2.4.1
 * Unicorn 5.5.1
 
