@@ -1,5 +1,4 @@
 ![](https://img.shields.io/badge/Redmine-v4.1.1-blue.svg)
-[![CircleCI](https://circleci.com/gh/YoshinoriN/docker-redmine-orchestration.svg?style=svg)](https://circleci.com/gh/YoshinoriN/docker-redmine-orchestration)
 
 # docker-redmine-orchestration 
 
