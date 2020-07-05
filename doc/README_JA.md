@@ -1,5 +1,4 @@
-![](https://img.shields.io/badge/Redmine-v3.4.6-blue.svg)
-[![CircleCI](https://circleci.com/gh/YoshinoriN/docker-redmine-orchestration.svg?style=svg)](https://circleci.com/gh/YoshinoriN/docker-redmine-orchestration)
+![](https://img.shields.io/badge/Redmine-v4.0.4-blue.svg)
 
 # 補足記事
 
@@ -12,10 +11,10 @@ Docker-composeで構築できるRedmineです。
 
 # 構成
 
-* MariaDB 10.3.0
-* Nginx 1.15.0 (無効にできます)
+* MariaDB 10.4.x
+* Nginx 1.16.0 (無効にできます)
 * Ruby 2.4.1
-* Unicorn 5.4.0
+* Unicorn 5.5.1
 
 # Docker公式のRedmineとの相違点
 
@@ -30,7 +29,7 @@ Docker-composeで構築できるRedmineです。
 
 # 動作要件
 
-* Docker compose 1.6以上
+* Docker compose 3以上
 
 # 概要
 
