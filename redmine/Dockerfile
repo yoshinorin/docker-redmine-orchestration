@@ -1,6 +1,6 @@
 FROM ruby:2.6-alpine3.13
 
-MAINTAINER YoshinoriN
+LABEL maintainer="yoshinorin"
 
 RUN apk update --no-cache \
   && apk add --no-cache --virtual build-dependencies libffi-dev build-base \
