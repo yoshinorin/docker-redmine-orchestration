@@ -1,10 +1,10 @@
-FROM ruby:2.6-alpine
+FROM ruby:2.6-alpine3.13
 
 MAINTAINER YoshinoriN
 
 RUN apk update --no-cache \
   && apk add --no-cache --virtual build-dependencies libffi-dev build-base \
-  && apk add --no-cache mysql-client tzdata mariadb-dev=10.4.13-r0 linux-headers=5.4.5-r1 imagemagick-dev=7.0.10.12-r0 \
+  && apk add --no-cache mysql-client tzdata mariadb-dev=10.5.9-r0 linux-headers=5.7.8-r0 imagemagick-dev=7.0.10.57-r0 \
   && apk add --no-cache git \
   && mkdir -p /usr/src/app/redmine \
   && mkdir -p /usr/src/app/redmine/tmp/pids
