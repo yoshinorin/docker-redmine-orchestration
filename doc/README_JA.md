@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Redmine-v4.1.1-blue.svg)
+![](https://img.shields.io/badge/Redmine-v4.2.0-blue.svg)
 
 # 補足記事
 

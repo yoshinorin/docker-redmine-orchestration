@@ -1,12 +1,11 @@
 #!/bin/sh
 
-REDMINE_VERSION="4.1.1"
-SHA256_CHECKSUM="05faafe764330f2d77b0aacddf9d8ddce579c3d26bb8e03a7d6e7ff461f1cdda"
+REDMINE_VERSION="4.2.0"
+SHA256_CHECKSUM="295864c580afa2a926e7a17f2ad10693f9b7a6d9f1ef523edb96b2368e7f07e5"
 
 echo "[INFO] Downloading..."
 
 cd $(dirname $0)
-echo pwd
 
 curl -O -s https://www.redmine.org/releases/redmine-${REDMINE_VERSION}.tar.gz
 

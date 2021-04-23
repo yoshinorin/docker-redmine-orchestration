@@ -12,5 +12,4 @@ redmine/src*
 !redmine/src/config/database.yml
 !redmine/src/config/unicorn.yml
 *.rbc
-
-
+*.tar.gz
