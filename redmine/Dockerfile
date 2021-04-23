@@ -1,4 +1,4 @@
-FROM ruby:2.6-alpine3.13
+FROM ruby:2.7.3-alpine3.13
 
 LABEL maintainer="yoshinorin"
 
